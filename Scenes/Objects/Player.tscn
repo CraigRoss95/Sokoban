@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bmwb7flucaou5"]
+
+[ext_resource type="Texture2D" uid="uid://cejx6faascxid" path="res://Assets/guy.png" id="1_5f5w1"]
+[ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="2_r6m6p"]
+[ext_resource type="PackedScene" uid="uid://cwiiinvbsgpo3" path="res://Scenes/Components/playerControllerComponent.tscn" id="3_s8rx5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
+size = Vector2(16, 16)
+
+[node name="Player" type="Node2D" unique_id=382986733]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1360602869]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1493220098]
+shape = SubResource("RectangleShape2D_5f5w1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1481059899]
+texture = ExtResource("1_5f5w1")
+
+[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("2_r6m6p")]
+
+[node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent") instance=ExtResource("3_s8rx5")]
+movementComponent = NodePath("../MovementComponent")
