@@ -21,6 +21,6 @@ shape = SubResource("RectangleShape2D_rueyf")
 script = ExtResource("2_rueyf")
 metadata/_custom_type_script = "uid://t4i3n4bff7l2"
 
-[node name="GridObjectComponent" type="Node2D" parent="MovementComponent" unique_id=1472903068]
+[node name="GridObjectComponent" type="Node2D" parent="." unique_id=1472903068]
 script = ExtResource("3_qm080")
 metadata/_custom_type_script = "uid://bcatsx1xboc3x"

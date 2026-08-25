@@ -10,10 +10,22 @@ public partial class PlayerControllerComponent : Node2D
 {
 	[Export]
 	MovementComponent movementComponent;
+	[Export]
+	Timer inputBufferTimer;
+
+	private bool bufferInputs = false;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		inputBufferTimer.Timeout += StopBufferingInput;
 	}
+
+    public override void _ExitTree()
+    {
+        inputBufferTimer.Timeout -= StopBufferingInput;
+    }
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -22,41 +34,28 @@ public partial class PlayerControllerComponent : Node2D
 	}
     public override void _Input(InputEvent @event)
     {
-
-		// TODO LAME! inplement an input buffer (so you can hold down the button and not zoom off screen)
         base._Input(@event);
-
-		if (Input.GetVector("left","right","up","down") != new Vector2())
-		{
-			if (@event.IsActionPressed("up"))
-			{
-				UseInput(Vector2.Up);
-			}
-			else if (@event.IsActionPressed("down"))
-			{
-				UseInput(Vector2.Down);
-			}
-			else if (@event.IsActionPressed("left"))
-			{
-				UseInput(Vector2.Left);
-			}
-			else if (@event.IsActionPressed("right"))
-			{
-				UseInput(Vector2.Right);
-			}
-		}
+		HandelDirectionalMovement();
 
     }
 
-	private void UseInput(Vector2 inputDirection)
+	private void HandelDirectionalMovement()
 	{
-		if (movementComponent.CanMove(inputDirection))
+		//Move and buffer for input
+		Vector2 inputDirection = Input.GetVector("left","right","up","down");
+
+		if (bufferInputs == false &&
+			Global.directionList.Contains(inputDirection))
 		{
-			movementComponent.Move(inputDirection);
+			StartBufferInput();
+			UseInput(inputDirection);
 		}
-		else
+
+		//Release Buffer if movment key is released
+		if (bufferInputs == true 
+		&& inputDirection == new Vector2())
 		{
-			Push(inputDirection);
+			StopBufferingInput();
 		}
 	}
 
@@ -81,4 +80,24 @@ public partial class PlayerControllerComponent : Node2D
 
 	}
 
+	private void StopBufferingInput() {bufferInputs = false;}
+
+	private void StartBufferInput ()
+	{
+		GD.Print(inputBufferTimer.WaitTime);
+		bufferInputs = true;
+		inputBufferTimer.Start();
+	}
+
+	private void UseInput(Vector2 inputDirection)
+	{
+		if (movementComponent.CanMove(inputDirection))
+		{
+			movementComponent.Move(inputDirection);
+		}
+		else
+		{
+			Push(inputDirection);
+		}
+	}	
 }

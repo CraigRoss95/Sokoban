@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public partial class Global : Node
 
 {
-	public static int pixelGridSize = 16;
+	// Allows for isometirc camara angel (not reall isometric angel but can't find the right word for "at an angel and not top down")
+	public static Vector2 pixelGridSize = new Vector2 (16,12);
 	public static List<Vector2> directionList = new List<Vector2> {Vector2.Up, Vector2.Down, Vector2.Left, Vector2.Right};
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
