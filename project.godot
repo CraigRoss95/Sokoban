@@ -60,6 +60,11 @@ undo={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Boxes"
+2d_physics/layer_2="Player"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

@@ -12,6 +12,8 @@ public partial class PlayerControllerComponent : Node2D
 	MovementComponent movementComponent;
 	[Export]
 	Timer inputBufferTimer;
+	[Export]
+	RayCast2D pushRayCast;
 
 	private bool bufferInputs = false;
 	
@@ -51,6 +53,7 @@ public partial class PlayerControllerComponent : Node2D
 			UseInput(inputDirection);
 		}
 
+		//TODO add smear lines if this if this triggers in quick succession
 		//Release Buffer if movment key is released
 		if (bufferInputs == true 
 		&& inputDirection == new Vector2())
@@ -84,7 +87,6 @@ public partial class PlayerControllerComponent : Node2D
 
 	private void StartBufferInput ()
 	{
-		GD.Print(inputBufferTimer.WaitTime);
 		bufferInputs = true;
 		inputBufferTimer.Start();
 	}

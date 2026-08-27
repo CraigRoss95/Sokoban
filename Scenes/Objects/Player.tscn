@@ -11,6 +11,7 @@ size = Vector2(16, 16)
 [node name="Player" type="Node2D" unique_id=382986733]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1360602869]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1493220098]
 shape = SubResource("RectangleShape2D_5f5w1")
@@ -18,11 +19,11 @@ shape = SubResource("RectangleShape2D_5f5w1")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1481059899]
 texture = ExtResource("1_5f5w1")
 
-[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("2_r6m6p")]
-
 [node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent") instance=ExtResource("3_s8rx5")]
 movementComponent = NodePath("../MovementComponent")
 
 [node name="GridObjectComponent" type="Node2D" parent="." unique_id=1415304808]
 script = ExtResource("4_r6m6p")
 metadata/_custom_type_script = "uid://bcatsx1xboc3x"
+
+[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("2_r6m6p")]

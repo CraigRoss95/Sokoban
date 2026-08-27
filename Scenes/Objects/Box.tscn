@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyfbtynhsiihh"]
 
 [ext_resource type="Texture2D" uid="uid://dxqrbjec5qt71" path="res://Assets/box.png" id="1_g0g3h"]
-[ext_resource type="Script" uid="uid://t4i3n4bff7l2" path="res://Scenes/Components/MovementComponent.cs" id="2_rueyf"]
+[ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="3_ohx7e"]
 [ext_resource type="Script" uid="uid://bcatsx1xboc3x" path="res://Scenes/Components/GridObjectComponent.cs" id="3_qm080"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
@@ -13,14 +13,13 @@ size = Vector2(16, 16)
 texture = ExtResource("1_g0g3h")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=429007606]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597198190]
 shape = SubResource("RectangleShape2D_rueyf")
 
-[node name="MovementComponent" type="Node2D" parent="." unique_id=204751318]
-script = ExtResource("2_rueyf")
-metadata/_custom_type_script = "uid://t4i3n4bff7l2"
-
 [node name="GridObjectComponent" type="Node2D" parent="." unique_id=1472903068]
 script = ExtResource("3_qm080")
 metadata/_custom_type_script = "uid://bcatsx1xboc3x"
+
+[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("3_ohx7e")]
