@@ -8,12 +8,10 @@ using System.Runtime.CompilerServices;
 [GlobalClass]
 public partial class PlayerControllerComponent : Node2D
 {
-	[Export]
-	MovementComponent movementComponent;
-	[Export]
-	Timer inputBufferTimer;
-	[Export]
-	RayCast2D pushRayCast;
+	[Export] MovementComponent movementComponent;
+	[Export] AdjacentRayComponent	adjacentRayComponent;
+
+	[Export] Timer inputBufferTimer;
 
 	private bool bufferInputs = false;
 	
@@ -64,18 +62,20 @@ public partial class PlayerControllerComponent : Node2D
 
 	private void Push (Vector2 direction)
 	{
-		Node pushObject = new Node(); //TODO use raycast to get push object
+		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
+		GD.Print(pushObject.Name);
 
-		// TODO Does this work?
-		MovementComponent pushObjectMovmentComponent= pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
-
-		if (pushObjectMovmentComponent != null)
+		if (pushObject.GetNode("MovementComponent") == null)
 		{
-			if (pushObjectMovmentComponent.CanMove(direction))
-			{
-				pushObjectMovmentComponent.Move(direction);
-			}
+			return;
 		}
+		
+		MovementComponent pushObjectMoveComponent = pushObject.GetNode<MovementComponent>("MovementComponent");
+		if (pushObjectMoveComponent.CanMove(direction))
+		{
+			pushObjectMoveComponent.Move(direction);
+		}
+		
 		else
 		{
 			//TODO Play sad sound

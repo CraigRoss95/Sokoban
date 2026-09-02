@@ -26,13 +26,6 @@ public partial class MovementComponent : Node2D
 
 	public bool CanMove(Vector2 direction)
 	{
-		RayCast2D ray = adjacentRayComponent.GetRay(direction);
-		if (ray.IsColliding())
-		{
-			Node collision = (Node)ray.GetCollider();
-			GD.Print("impact " + GetParent().Name + collision.GetParent().Name);
-			return false;
-		}
-		return true;
+		return adjacentRayComponent.GetAdjacentNode(direction) == null;
 	}
 }

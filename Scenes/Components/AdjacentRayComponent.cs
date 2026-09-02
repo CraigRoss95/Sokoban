@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 [Tool]
 [GlobalClass]
@@ -16,6 +17,7 @@ public partial class AdjacentRayComponent : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
 	}
 
 	public RayCast2D GetRay (Vector2 direction)
@@ -36,6 +38,20 @@ public partial class AdjacentRayComponent : Node2D
 		else
 		{
 			return rayCastUp;
+		}
+	}
+
+	public Node2D GetAdjacentNode(Vector2 direction)
+	{
+		RayCast2D ray = GetRay(direction);
+		if (ray.IsColliding())
+		{
+			Node2D collision = (Node2D)ray.GetCollider();
+			return collision.GetParent<Node2D>();
+		}
+		else
+		{
+			return null;
 		}
 	}
 }

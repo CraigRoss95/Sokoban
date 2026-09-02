@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgwceqq54itq2"]
 
-[ext_resource type="Script" uid="uid://bo3vgkyut80ur" path="res://Scenes/Objects/AdjacentRayComponent.cs" id="1_im85t"]
+[ext_resource type="Script" uid="uid://bo3vgkyut80ur" path="res://Scenes/Components/AdjacentRayComponent.cs" id="1_im85t"]
 
 [node name="AdjacentRayComponent" type="Node2D" unique_id=210132587 node_paths=PackedStringArray("rayCastUp", "rayCastRight", "rayCastDown", "rayCastLeft")]
 script = ExtResource("1_im85t")
