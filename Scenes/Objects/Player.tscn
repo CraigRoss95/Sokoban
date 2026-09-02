@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="2_r6m6p"]
 [ext_resource type="PackedScene" uid="uid://cwiiinvbsgpo3" path="res://Scenes/Components/playerControllerComponent.tscn" id="3_s8rx5"]
 [ext_resource type="Script" uid="uid://bcatsx1xboc3x" path="res://Scenes/Components/GridObjectComponent.cs" id="4_r6m6p"]
+[ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="5_s8rx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
 size = Vector2(16, 16)
@@ -20,10 +21,13 @@ shape = SubResource("RectangleShape2D_5f5w1")
 texture = ExtResource("1_5f5w1")
 
 [node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent") instance=ExtResource("3_s8rx5")]
-movementComponent = NodePath("../MovementComponent")
+movementComponent = NodePath("../MovementComponetnt")
 
 [node name="GridObjectComponent" type="Node2D" parent="." unique_id=1415304808]
 script = ExtResource("4_r6m6p")
 metadata/_custom_type_script = "uid://bcatsx1xboc3x"
 
-[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("2_r6m6p")]
+[node name="MovementComponetnt" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent") instance=ExtResource("2_r6m6p")]
+adjacentRayComponent = NodePath("../AdjacentRayComponent")
+
+[node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("5_s8rx5")]
