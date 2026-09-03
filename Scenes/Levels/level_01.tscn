@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bmwb7flucaou5" path="res://Scenes/Objects/Player.tscn" id="1_l0dwn"]
 [ext_resource type="PackedScene" uid="uid://dyfbtynhsiihh" path="res://Scenes/Objects/Box.tscn" id="2_66ail"]
+[ext_resource type="PackedScene" uid="uid://m7so118hlil4" path="res://Scenes/Objects/ImmovableBox.tscn" id="3_ni7lu"]
 
 [node name="Level01" type="Node2D" unique_id=520148004]
 
@@ -13,3 +14,6 @@ position = Vector2(584, 352)
 
 [node name="Box2" parent="." unique_id=70760548 instance=ExtResource("2_66ail")]
 position = Vector2(600, 352)
+
+[node name="Box3" parent="." unique_id=301867619 instance=ExtResource("3_ni7lu")]
+position = Vector2(552, 352)

@@ -5,7 +5,8 @@ using Godot;
 [GlobalClass]
 public partial class MovementComponent : Node2D
 {
-[Export] AdjacentRayComponent adjacentRayComponent;
+	[Export] AdjacentRayComponent adjacentRayComponent;
+	[Export] bool movable = true;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -20,7 +21,7 @@ public partial class MovementComponent : Node2D
 
 	public void Move(Vector2 direction)
 	{
-		if (CanMove(direction))
+		if (movable && CanMove(direction))
 		GetParent<Node2D>().GlobalPosition = GlobalPosition + (direction * Global.pixelGridSize);
 	}
 
