@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dxqrbjec5qt71" path="res://Assets/box.png" id="1_g0g3h"]
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="3_ohx7e"]
-[ext_resource type="PackedScene" uid="uid://bixjqphu71cx7" path="res://Scenes/Components/GridObjectComponent.tscn" id="3_v63sv"]
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="4_u1u4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
@@ -21,7 +20,5 @@ shape = SubResource("RectangleShape2D_rueyf")
 
 [node name="MovementComponent" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent") instance=ExtResource("3_ohx7e")]
 adjacentRayComponent = NodePath("../AdjacentRayComponent")
-
-[node name="GridObjectComponent" parent="." unique_id=473479116 instance=ExtResource("3_v63sv")]
 
 [node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("4_u1u4y")]

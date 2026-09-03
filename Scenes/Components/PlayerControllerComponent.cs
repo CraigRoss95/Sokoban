@@ -65,7 +65,7 @@ public partial class PlayerControllerComponent : Node2D
 		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
 		GD.Print(pushObject.Name);
 
-		if (pushObject.GetNode("MovementComponent") == null)
+		if (pushObject.HasNode("MovementComponent"))
 		{
 			return;
 		}

@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cejx6faascxid" path="res://Assets/guy.png" id="1_5f5w1"]
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="2_r6m6p"]
 [ext_resource type="PackedScene" uid="uid://cwiiinvbsgpo3" path="res://Scenes/Components/playerControllerComponent.tscn" id="3_s8rx5"]
-[ext_resource type="PackedScene" uid="uid://bixjqphu71cx7" path="res://Scenes/Components/GridObjectComponent.tscn" id="5_k46cm"]
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="5_s8rx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
@@ -28,5 +27,3 @@ adjacentRayComponent = NodePath("../AdjacentRayComponent")
 adjacentRayComponent = NodePath("../AdjacentRayComponent")
 
 [node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("5_s8rx5")]
-
-[node name="GridObjectComponent" parent="." unique_id=473479116 instance=ExtResource("5_k46cm")]
