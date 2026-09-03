@@ -47,12 +47,12 @@ public partial class PlayerControllerComponent : Node2D
 		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
 		GD.Print(pushObject.Name);
 
-		if (!pushObject.HasNode("MovementComponent"))
+		if (pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault() == null)
 		{
 			return;
 		}
 		
-		MovementComponent pushObjectMoveComponent = pushObject.GetNode<MovementComponent>("MovementComponent");
+		MovementComponent pushObjectMoveComponent = pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
 		if (pushObjectMoveComponent.CanMove(direction))
 		{
 			pushObjectMoveComponent.Move(direction);
