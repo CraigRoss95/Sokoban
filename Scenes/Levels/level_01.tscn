@@ -2,11 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://bmwb7flucaou5" path="res://Scenes/Objects/Player.tscn" id="1_l0dwn"]
 [ext_resource type="PackedScene" uid="uid://dyfbtynhsiihh" path="res://Scenes/Objects/Box.tscn" id="2_66ail"]
+[ext_resource type="PackedScene" uid="uid://m7so118hlil4" path="res://Scenes/Objects/ImmovableBox.tscn" id="3_ni7lu"]
+[ext_resource type="PackedScene" uid="uid://td3gbbiaihf3" path="res://Scenes/Objects/Wall.tscn" id="4_wf6s8"]
 
 [node name="Level01" type="Node2D" unique_id=520148004]
 
 [node name="Player" parent="." unique_id=382986733 instance=ExtResource("1_l0dwn")]
-position = Vector2(568, 352)
+position = Vector2(560, 352)
 
 [node name="Box" parent="." unique_id=680015066 instance=ExtResource("2_66ail")]
-position = Vector2(584, 352)
+position = Vector2(576, 336)
+
+[node name="Box2" parent="." unique_id=70760548 instance=ExtResource("2_66ail")]
+position = Vector2(592, 352)
+
+[node name="Box5" parent="." unique_id=1960155565 instance=ExtResource("3_ni7lu")]
+position = Vector2(624, 400)
+
+[node name="Box3" parent="." unique_id=1992884713 instance=ExtResource("4_wf6s8")]
+position = Vector2(544, 384)
+scale = Vector2(9, 1)

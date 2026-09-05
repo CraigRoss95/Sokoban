@@ -8,25 +8,11 @@ using System.Runtime.CompilerServices;
 [GlobalClass]
 public partial class PlayerControllerComponent : Node2D
 {
-	[Export]
-	MovementComponent movementComponent;
-	[Export]
-	Timer inputBufferTimer;
-	[Export]
-	RayCast2D pushRayCast;
+	[Export] MovementComponent movementComponent;
+	[Export] AdjacentRayComponent	adjacentRayComponent;
 
-	private bool bufferInputs = false;
-	
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		inputBufferTimer.Timeout += StopBufferingInput;
-	}
-
-    public override void _ExitTree()
-    {
-        inputBufferTimer.Timeout -= StopBufferingInput;
-    }
+	
 
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,49 +32,37 @@ public partial class PlayerControllerComponent : Node2D
 		//Move and buffer for input
 		Vector2 inputDirection = Input.GetVector("left","right","up","down");
 
-		if (bufferInputs == false &&
+		if (
 			Global.directionList.Contains(inputDirection))
 		{
-			StartBufferInput();
 			UseInput(inputDirection);
 		}
 
-		//TODO add smear lines if this if this triggers in quick succession
-		//Release Buffer if movment key is released
-		if (bufferInputs == true 
-		&& inputDirection == new Vector2())
-		{
-			StopBufferingInput();
-		}
+		//TODO add smear lines if this if this triggers
+		
 	}
 
 	private void Push (Vector2 direction)
 	{
-		Node pushObject = new Node(); //TODO use raycast to get push object
+		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
+		GD.Print(pushObject.Name);
 
-		// TODO Does this work?
-		MovementComponent pushObjectMovmentComponent= pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
-
-		if (pushObjectMovmentComponent != null)
+		if (pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault() == null)
 		{
-			if (pushObjectMovmentComponent.CanMove(direction))
-			{
-				pushObjectMovmentComponent.Move(direction);
-			}
+			return;
 		}
+		
+		MovementComponent pushObjectMoveComponent = pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
+		if (pushObjectMoveComponent.CanMove(direction))
+		{
+			pushObjectMoveComponent.Move(direction);
+		}
+		
 		else
 		{
 			//TODO Play sad sound
 		}
 
-	}
-
-	private void StopBufferingInput() {bufferInputs = false;}
-
-	private void StartBufferInput ()
-	{
-		bufferInputs = true;
-		inputBufferTimer.Start();
 	}
 
 	private void UseInput(Vector2 inputDirection)

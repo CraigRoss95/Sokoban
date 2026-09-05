@@ -4,7 +4,4 @@
 
 [node name="PlayerControllerComponent" type="Node2D" unique_id=1371010233 node_paths=PackedStringArray("inputBufferTimer")]
 script = ExtResource("1_xuugx")
-inputBufferTimer = NodePath("InputBufferTimer")
-
-[node name="InputBufferTimer" type="Timer" parent="." unique_id=509099043]
-wait_time = 0.2
+inputBufferTimer = NodePath("")

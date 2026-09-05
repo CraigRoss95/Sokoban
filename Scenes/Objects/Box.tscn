@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dxqrbjec5qt71" path="res://Assets/box.png" id="1_g0g3h"]
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="3_ohx7e"]
-[ext_resource type="Script" uid="uid://bcatsx1xboc3x" path="res://Scenes/Components/GridObjectComponent.cs" id="3_qm080"]
+[ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="4_u1u4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
 size = Vector2(16, 16)
@@ -18,8 +18,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597198190]
 shape = SubResource("RectangleShape2D_rueyf")
 
-[node name="GridObjectComponent" type="Node2D" parent="." unique_id=1472903068]
-script = ExtResource("3_qm080")
-metadata/_custom_type_script = "uid://bcatsx1xboc3x"
+[node name="MovementComponent" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent") instance=ExtResource("3_ohx7e")]
+adjacentRayComponent = NodePath("../AdjacentRayComponent")
 
-[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("3_ohx7e")]
+[node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("4_u1u4y")]
