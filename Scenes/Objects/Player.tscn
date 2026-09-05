@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cejx6faascxid" path="res://Assets/guy.png" id="1_5f5w1"]
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="2_r6m6p"]
 [ext_resource type="PackedScene" uid="uid://cwiiinvbsgpo3" path="res://Scenes/Components/playerControllerComponent.tscn" id="3_s8rx5"]
+[ext_resource type="PackedScene" uid="uid://qustnigx352u" path="res://Scenes/Components/InputControllerComponent.tscn" id="5_k46cm"]
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="5_s8rx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
@@ -19,11 +20,15 @@ shape = SubResource("RectangleShape2D_5f5w1")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1481059899]
 texture = ExtResource("1_5f5w1")
 
-[node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent", "adjacentRayComponent") instance=ExtResource("3_s8rx5")]
+[node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent", "adjacentRayComponent", "inputControllerComponent") instance=ExtResource("3_s8rx5")]
 movementComponent = NodePath("../MovementComponetnt")
 adjacentRayComponent = NodePath("../AdjacentRayComponent")
+inputControllerComponent = NodePath("../InputControllerComponent")
 
 [node name="MovementComponetnt" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent") instance=ExtResource("2_r6m6p")]
 adjacentRayComponent = NodePath("../AdjacentRayComponent")
 
 [node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("5_s8rx5")]
+
+[node name="InputControllerComponent" parent="." unique_id=171122283 node_paths=PackedStringArray("playerControllerComponent") instance=ExtResource("5_k46cm")]
+playerControllerComponent = NodePath("../PlayerControllerComponent")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qustnigx352u"]
+
+[ext_resource type="Script" uid="uid://6o1ifm87kd6w" path="res://Scenes/Components/InputControllerComponent.cs" id="1_cqqyi"]
+
+[node name="InputControllerComponent" type="Node2D" unique_id=171122283]
+script = ExtResource("1_cqqyi")
