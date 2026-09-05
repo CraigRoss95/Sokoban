@@ -11,6 +11,8 @@ public partial class PlayerControllerComponent : Node2D
 	[Export] MovementComponent movementComponent;
 	[Export] AdjacentRayComponent	adjacentRayComponent;
 
+	private Vector2 directionalMovementBuffer = new Vector2();
+
 	// Called when the node enters the scene tree for the first time.
 	
 
@@ -18,16 +20,16 @@ public partial class PlayerControllerComponent : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		UseBufferedInputs();
 	}
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-		HandelDirectionalMovement();
+		BufferInputs();
 
     }
 
-	private void HandelDirectionalMovement()
+	private void BufferInputs()
 	{
 		//Move and buffer for input
 		Vector2 inputDirection = Input.GetVector("left","right","up","down");
@@ -35,16 +37,25 @@ public partial class PlayerControllerComponent : Node2D
 		if (
 			Global.directionList.Contains(inputDirection))
 		{
-			UseInput(inputDirection);
-		}
+			directionalMovementBuffer = inputDirection;
+		}	
 
-		//TODO add smear lines if this if this triggers
-		
+		//Put Use Input here	
+	}
+
+	private void UseBufferedInputs()
+	{
+		if (directionalMovementBuffer != new Vector2())
+		{
+			UseDirectionalInput(directionalMovementBuffer);
+			directionalMovementBuffer = new Vector2();
+		}
 	}
 
 	private void Push (Vector2 direction)
 	{
 		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
+		//Not working with tilemap
 		GD.Print(pushObject.Name);
 
 		if (pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault() == null)
@@ -65,7 +76,7 @@ public partial class PlayerControllerComponent : Node2D
 
 	}
 
-	private void UseInput(Vector2 inputDirection)
+	private void UseDirectionalInput(Vector2 inputDirection)
 	{
 		if (movementComponent.CanMove(inputDirection))
 		{
