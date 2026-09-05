@@ -10,8 +10,9 @@ public partial class PlayerControllerComponent : Node2D
 {
 	[Export] MovementComponent movementComponent;
 	[Export] AdjacentRayComponent	adjacentRayComponent;
-
+	[Export] double moveSpeedBufferMax = 0; 
 	private Vector2 directionalMovementBuffer = new Vector2();
+	private double currentMoveBufferWait = 0.0;
 
 	// Called when the node enters the scene tree for the first time.
 	
@@ -20,7 +21,7 @@ public partial class PlayerControllerComponent : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		UseBufferedInputs();
+		UseBufferedInputs(delta);
 	}
     public override void _Input(InputEvent @event)
     {
@@ -43,10 +44,13 @@ public partial class PlayerControllerComponent : Node2D
 		//Put Use Input here	
 	}
 
-	private void UseBufferedInputs()
+	private void UseBufferedInputs(double delta)
 	{
-		if (directionalMovementBuffer != new Vector2())
+		currentMoveBufferWait += delta ;
+		if (directionalMovementBuffer != new Vector2()
+		&& moveSpeedBufferMax <= currentMoveBufferWait)
 		{
+			currentMoveBufferWait = 0.0;
 			UseDirectionalInput(directionalMovementBuffer);
 			directionalMovementBuffer = new Vector2();
 		}
