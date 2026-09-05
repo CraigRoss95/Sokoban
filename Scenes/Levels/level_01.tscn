@@ -1,24 +1,20 @@
-[gd_scene format=3 uid="uid://b4gkuefn1xkv3"]
+[gd_scene format=4 uid="uid://b4gkuefn1xkv3"]
 
 [ext_resource type="PackedScene" uid="uid://bmwb7flucaou5" path="res://Scenes/Objects/Player.tscn" id="1_l0dwn"]
 [ext_resource type="PackedScene" uid="uid://dyfbtynhsiihh" path="res://Scenes/Objects/Box.tscn" id="2_66ail"]
 [ext_resource type="PackedScene" uid="uid://m7so118hlil4" path="res://Scenes/Objects/ImmovableBox.tscn" id="3_ni7lu"]
-[ext_resource type="PackedScene" uid="uid://td3gbbiaihf3" path="res://Scenes/Objects/Wall.tscn" id="4_wf6s8"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wf6s8"]
+scenes/1/scene = ExtResource("1_l0dwn")
+scenes/3/scene = ExtResource("2_66ail")
+scenes/4/scene = ExtResource("3_ni7lu")
+
+[sub_resource type="TileSet" id="TileSet_dbq10"]
+sources/0 = SubResource("TileSetScenesCollectionSource_wf6s8")
 
 [node name="Level01" type="Node2D" unique_id=520148004]
 
-[node name="Player" parent="." unique_id=382986733 instance=ExtResource("1_l0dwn")]
-position = Vector2(560, 352)
-
-[node name="Box" parent="." unique_id=680015066 instance=ExtResource("2_66ail")]
-position = Vector2(576, 336)
-
-[node name="Box2" parent="." unique_id=70760548 instance=ExtResource("2_66ail")]
-position = Vector2(592, 352)
-
-[node name="Box5" parent="." unique_id=1960155565 instance=ExtResource("3_ni7lu")]
-position = Vector2(624, 400)
-
-[node name="Box3" parent="." unique_id=1992884713 instance=ExtResource("4_wf6s8")]
-position = Vector2(544, 384)
-scale = Vector2(9, 1)
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1514323658]
+tile_map_data = PackedByteArray("AAAhABsAAAAAAAAABAAiABsAAAAAAAAABAAjABsAAAAAAAAABAAkABsAAAAAAAAABAAaABkAAAAAAAAAAwAYABoAAAAAAAAAAwAdABoAAAAAAAAAAQAdABsAAAAAAAAABAAeABsAAAAAAAAABAAfABsAAAAAAAAABAAgABsAAAAAAAAABAA=")
+tile_set = SubResource("TileSet_dbq10")
+rendering_quadrant_size = 11
