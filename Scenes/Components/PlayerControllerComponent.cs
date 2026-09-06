@@ -4,8 +4,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-[Tool]
-[GlobalClass]
+
 public partial class PlayerControllerComponent : Node2D
 {
 	[Export] MovementComponent movementComponent;
@@ -24,15 +23,7 @@ public partial class PlayerControllerComponent : Node2D
 	{
 		inputControllerComponent.UseBufferedInputs(delta);
 	}
-    public override void _Input(InputEvent @event)
-    {
-        base._Input(@event);
-		inputControllerComponent.BufferInputs();
-
-    }
-
-	
-
+    
 	private void Push (Vector2 direction)
 	{
 		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
