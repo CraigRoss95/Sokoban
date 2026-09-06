@@ -57,8 +57,6 @@ public partial class InputControllerComponent : Node2D
 		{
 			currentDirectionalInput = Input.GetVector("left","right","up","down");
 		}
-
-		//Put Use Input here	
 	}
 
 	public void UseBufferedInputs(double delta)

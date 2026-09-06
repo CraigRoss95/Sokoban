@@ -22,6 +22,7 @@ public partial class PlayerControllerComponent : Node2D
 	public override void _Process(double delta)
 	{
 		inputControllerComponent.UseBufferedInputs(delta);
+		GD.Print("FPS: " + Engine.GetFramesPerSecond());
 	}
     
 	private void Push (Vector2 direction)
