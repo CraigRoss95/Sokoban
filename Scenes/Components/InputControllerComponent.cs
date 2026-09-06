@@ -6,7 +6,7 @@ public partial class InputControllerComponent : Node2D
 {
 	[Export] PlayerControllerComponent playerControllerComponent;
 
-	[Export] double moveSpeedBufferMax = 0.3; 
+	[Export] double moveSpeedBufferMax = 0.2; 
 
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
@@ -63,7 +63,8 @@ public partial class InputControllerComponent : Node2D
 	{
 		currentMoveBufferWait += delta ;
 		if (currentDirectionalInput != new Vector2()
-		&& moveSpeedBufferMax <= currentMoveBufferWait)
+		&& moveSpeedBufferMax <= currentMoveBufferWait
+		&& !playerControllerComponent.movementComponent.moving)
 		{
 			currentMoveBufferWait = 0.0;
 			//TODO make this use a signal

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 public partial class PlayerControllerComponent : Node2D
 {
-	[Export] MovementComponent movementComponent;
+	[Export] public MovementComponent movementComponent;
 	[Export] AdjacentRayComponent	adjacentRayComponent;
 
 	[Export] InputControllerComponent inputControllerComponent;
@@ -22,24 +22,25 @@ public partial class PlayerControllerComponent : Node2D
 	public override void _Process(double delta)
 	{
 		inputControllerComponent.UseBufferedInputs(delta);
-		GD.Print("FPS: " + Engine.GetFramesPerSecond());
 	}
     
 	private void Push (Vector2 direction)
 	{
 		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
-		//Not working with tilemap
-		GD.Print(pushObject.Name);
 
-		if (pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault() == null)
+		if (pushObject == null ||
+			pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault() == null)
 		{
 			return;
 		}
-		
+		//Not working with tilemap
+		GD.Print(pushObject.Name);
+
 		MovementComponent pushObjectMoveComponent = pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
 		if (pushObjectMoveComponent.CanMove(direction))
 		{
 			pushObjectMoveComponent.Move(direction);
+			movementComponent.ForceMove(direction);
 		}
 		
 		else

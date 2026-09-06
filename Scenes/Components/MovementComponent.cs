@@ -9,7 +9,7 @@ public partial class MovementComponent : Node2D
 	[Export] bool movable = true;
 	[Export] double moveTime = 0.1;
 
-	private bool moving = false;
+	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
 
 	
@@ -46,6 +46,11 @@ public partial class MovementComponent : Node2D
 		{
 			bufferedMoveDirection = direction;
 		}
+	}
+
+	public void ForceMove(Vector2 direction)
+	{
+		bufferedMoveDirection = direction;
 	}
 
 
