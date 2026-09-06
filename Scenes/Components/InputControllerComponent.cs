@@ -6,7 +6,7 @@ public partial class InputControllerComponent : Node2D
 {
 	[Export] PlayerControllerComponent playerControllerComponent;
 
-	[Export] double moveSpeedBufferMax = 0.2; 
+	[Export] double moveSpeedBufferMax = 0.3; 
 
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
@@ -32,7 +32,6 @@ public partial class InputControllerComponent : Node2D
 
 	public void GetInputs(InputEvent @event)
 	{
-
 		if (
 		   (@event.IsActionPressed("up")
 		|| @event.IsActionPressed("right")
@@ -44,13 +43,20 @@ public partial class InputControllerComponent : Node2D
 			currentDirectionalInput = Input.GetVector("left","right","up","down");
 		}
 
-		if (@event.IsActionReleased("up")
-		|| @event.IsActionReleased("right")
-		|| @event.IsActionReleased("down")
-		|| @event.IsActionReleased("left"))
+		if ((@event.IsActionReleased("up") && currentDirectionalInput == Vector2.Up)
+		|| (@event.IsActionReleased("right")&& currentDirectionalInput == Vector2.Right)
+		|| (@event.IsActionReleased("down") && currentDirectionalInput == Vector2.Down)
+		|| (@event.IsActionReleased("left") && currentDirectionalInput == Vector2.Left))
 		{
 			currentDirectionalInput = new Vector2();
 		}	
+
+		if(currentDirectionalInput == new Vector2()
+		&& Input.GetVector("left","right","up","down") != new Vector2()
+		&& Global.directionList.Contains(Input.GetVector("left","right","up","down"))) 
+		{
+			currentDirectionalInput = Input.GetVector("left","right","up","down");
+		}
 
 		//Put Use Input here	
 	}
