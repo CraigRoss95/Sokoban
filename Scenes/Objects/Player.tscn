@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="5_s8rx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
-size = Vector2(16, 16)
+size = Vector2(16, 12)
 
 [node name="Player" type="Node2D" unique_id=382986733]
 scale = Vector2(2, 2)
@@ -19,6 +19,7 @@ collision_layer = 2
 shape = SubResource("RectangleShape2D_5f5w1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1481059899]
+position = Vector2(0, -2)
 texture = ExtResource("1_5f5w1")
 
 [node name="MovementComponetnt" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent") instance=ExtResource("2_r6m6p")]

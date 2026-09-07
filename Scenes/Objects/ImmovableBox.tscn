@@ -3,11 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://f3b1yvp6yx21" path="res://Assets/immovableBox.png" id="1_h3jqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
-size = Vector2(16, 16)
+size = Vector2(16, 12)
 
 [node name="Box" type="Node2D" unique_id=680015066]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
+position = Vector2(0, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("1_h3jqy")
 

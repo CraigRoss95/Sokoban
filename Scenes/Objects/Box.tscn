@@ -5,12 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="4_u1u4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
-size = Vector2(16, 16)
+size = Vector2(16, 11)
 
 [node name="Box" type="Node2D" unique_id=680015066]
 scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
+position = Vector2(0, -2.5)
 texture = ExtResource("1_g0g3h")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=429007606]
