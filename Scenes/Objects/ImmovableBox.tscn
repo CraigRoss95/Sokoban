@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://m7so118hlil4"]
 
 [ext_resource type="Texture2D" uid="uid://f3b1yvp6yx21" path="res://Assets/immovableBox.png" id="1_h3jqy"]
+[ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="2_86pdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
 size = Vector2(16, 12)
 
-[node name="Box" type="Node2D" unique_id=680015066]
+[node name="ImmovableBox" type="Node2D" unique_id=680015066]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
 position = Vector2(0, -4)
@@ -18,3 +19,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597198190]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_rueyf")
+
+[node name="SpriteManagerComponent" parent="." unique_id=584303223 instance=ExtResource("2_86pdh")]

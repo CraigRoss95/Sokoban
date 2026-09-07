@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.ComponentModel;
 
-[Tool]
 [GlobalClass]
 public partial class AdjacentRayComponent : Node2D
 {	[Export] public RayCast2D rayCastUp;

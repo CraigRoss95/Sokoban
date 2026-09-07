@@ -1,12 +1,12 @@
 using Godot;
 
 
-[Tool]
 [GlobalClass]
 public partial class MovementComponent : Node2D
 {
 	[Export] AdjacentRayComponent adjacentRayComponent;
 	[Export] bool movable = true;
+	[Export] SpriteManagerComponent spriteManagerComponent;
 	private double moveTime = 0.1;
 	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
@@ -29,7 +29,7 @@ public partial class MovementComponent : Node2D
 			moving = true;
 			GetTree().CreateTween().TweenCallback(Callable.From(DoneMoving)).SetDelay(moveTime);
 		}	
-
+		spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);
 	}
 
 	private async void DoneMoving()

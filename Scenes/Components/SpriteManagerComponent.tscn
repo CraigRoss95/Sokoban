@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bijjaywi6npj1"]
+
+[ext_resource type="Script" uid="uid://dmbxd5trh254s" path="res://Scenes/Components/SpriteManagerComponent.cs" id="1_sorku"]
+
+[node name="SpriteManagerComponent" type="Node2D" unique_id=584303223]
+script = ExtResource("1_sorku")
