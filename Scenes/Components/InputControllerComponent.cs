@@ -37,26 +37,35 @@ public partial class InputControllerComponent : Node2D
 		|| @event.IsActionPressed("right")
 		|| @event.IsActionPressed("down")
 		|| @event.IsActionPressed("left"))
-		&& Global.directionList.Contains(Input.GetVector("left","right","up","down"))
 		)
 		{
+			if(@event.IsActionPressed("up"))
+			{
+				currentDirectionalInput = Vector2.Up;
+			}
+			else if(@event.IsActionPressed("right"))
+			{
+				currentDirectionalInput = Vector2.Right;
+			}
+			else if(@event.IsActionPressed("down"))
+			{
+				currentDirectionalInput = Vector2.Down;
+			}
+			else if(@event.IsActionPressed("left"))
+			{
+				currentDirectionalInput = Vector2.Left;
+			}
+			
+		}
+		else if (Global.directionList.Contains(Input.GetVector("left","right","up","down")))
+		{
 			currentDirectionalInput = Input.GetVector("left","right","up","down");
 		}
-
-		if ((@event.IsActionReleased("up") && currentDirectionalInput == Vector2.Up)
-		|| (@event.IsActionReleased("right")&& currentDirectionalInput == Vector2.Right)
-		|| (@event.IsActionReleased("down") && currentDirectionalInput == Vector2.Down)
-		|| (@event.IsActionReleased("left") && currentDirectionalInput == Vector2.Left))
+		else if (Input.GetVector("left","right","up","down") == new Vector2())
 		{
 			currentDirectionalInput = new Vector2();
-		}	
-
-		if(currentDirectionalInput == new Vector2()
-		&& Input.GetVector("left","right","up","down") != new Vector2()
-		&& Global.directionList.Contains(Input.GetVector("left","right","up","down"))) 
-		{
-			currentDirectionalInput = Input.GetVector("left","right","up","down");
 		}
+		
 	}
 
 	public void UseBufferedInputs(double delta)
