@@ -7,8 +7,7 @@ public partial class MovementComponent : Node2D
 {
 	[Export] AdjacentRayComponent adjacentRayComponent;
 	[Export] bool movable = true;
-	[Export] double moveTime = 0.1;
-
+	private double moveTime = 0.1;
 	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
 

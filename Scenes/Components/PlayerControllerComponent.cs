@@ -4,7 +4,8 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-
+[Tool]
+[GlobalClass]
 public partial class PlayerControllerComponent : Node2D
 {
 	[Export] public MovementComponent movementComponent;

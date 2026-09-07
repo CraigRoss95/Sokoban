@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://pmp270pe5p25" path="res://Scenes/Components/PlayerControllerComponent.cs" id="1_xuugx"]
 
-[node name="PlayerControllerComponent" type="Node2D" unique_id=1371010233 node_paths=PackedStringArray("inputBufferTimer")]
+[node name="PlayerControllerComponent" type="Node2D" unique_id=1371010233]
 script = ExtResource("1_xuugx")
-inputBufferTimer = NodePath("")

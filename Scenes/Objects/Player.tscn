@@ -10,6 +10,7 @@
 size = Vector2(16, 16)
 
 [node name="Player" type="Node2D" unique_id=382986733]
+scale = Vector2(2, 2)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1360602869]
 collision_layer = 2
@@ -20,11 +21,6 @@ shape = SubResource("RectangleShape2D_5f5w1")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1481059899]
 texture = ExtResource("1_5f5w1")
 
-[node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent", "adjacentRayComponent", "inputControllerComponent") instance=ExtResource("3_s8rx5")]
-movementComponent = NodePath("../MovementComponetnt")
-adjacentRayComponent = NodePath("../AdjacentRayComponent")
-inputControllerComponent = NodePath("../InputControllerComponent")
-
 [node name="MovementComponetnt" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent") instance=ExtResource("2_r6m6p")]
 adjacentRayComponent = NodePath("../AdjacentRayComponent")
 
@@ -32,3 +28,9 @@ adjacentRayComponent = NodePath("../AdjacentRayComponent")
 
 [node name="InputControllerComponent" parent="." unique_id=171122283 node_paths=PackedStringArray("playerControllerComponent") instance=ExtResource("5_k46cm")]
 playerControllerComponent = NodePath("../PlayerControllerComponent")
+moveSpeedBufferMax = 0.3
+
+[node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent", "adjacentRayComponent", "inputControllerComponent") instance=ExtResource("3_s8rx5")]
+movementComponent = NodePath("../MovementComponetnt")
+adjacentRayComponent = NodePath("../AdjacentRayComponent")
+inputControllerComponent = NodePath("../InputControllerComponent")

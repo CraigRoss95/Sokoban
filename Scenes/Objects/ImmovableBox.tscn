@@ -8,10 +8,12 @@ size = Vector2(16, 16)
 [node name="Box" type="Node2D" unique_id=680015066]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
+scale = Vector2(2, 2)
 texture = ExtResource("1_h3jqy")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=429007606]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597198190]
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_rueyf")

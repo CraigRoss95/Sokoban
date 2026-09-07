@@ -10,11 +10,12 @@ scenes/3/scene = ExtResource("2_66ail")
 scenes/4/scene = ExtResource("3_ni7lu")
 
 [sub_resource type="TileSet" id="TileSet_dbq10"]
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_wf6s8")
 
 [node name="Level01" type="Node2D" unique_id=520148004]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1514323658]
-tile_map_data = PackedByteArray("AAAhABsAAAAAAAAABAAiABsAAAAAAAAABAAjABsAAAAAAAAABAAkABsAAAAAAAAABAAaABkAAAAAAAAAAwAYABoAAAAAAAAAAwAdABsAAAAAAAAABAAeABsAAAAAAAAABAAfABsAAAAAAAAABAAgABsAAAAAAAAABAAdABcAAAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAIAAkAAAAAAAAAAwAKAAgAAAAAAAAAAwANAAYAAAAAAAAAAQANAAoAAAAAAAAABAAOAAoAAAAAAAAABAAPAAoAAAAAAAAABAAQAAoAAAAAAAAABAARAAoAAAAAAAAABAASAAoAAAAAAAAABAATAAoAAAAAAAAABAAUAAoAAAAAAAAABAA=")
 tile_set = SubResource("TileSet_dbq10")
 rendering_quadrant_size = 11
