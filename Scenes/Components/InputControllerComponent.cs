@@ -1,18 +1,28 @@
+using System.ComponentModel;
+using System.Linq;
 using Godot;
 
 [GlobalClass]
-public partial class InputControllerComponent : Node2D
+public partial class InputControllerComponent : Component
 {
-	[Export] PlayerControllerComponent playerControllerComponent;
+	public PlayerControllerComponent playerControllerComponent;
 
 	[Export] double moveSpeedBufferMax = 0.2; 
 
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
+
+	private GameObject parent;
 	// Called when the node enters the scene tree for the first time.
 
 	public override void _Ready()
 	{
+		parent = GetParent<GameObject>();
+		Callable.From(_LateReady).CallDeferred();
+	}
+	public void _LateReady()
+	{	
+		playerControllerComponent = parent.components.OfType<PlayerControllerComponent>().FirstOrDefault();		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

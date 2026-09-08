@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 
 [GlobalClass]
-public partial class AdjacentRayComponent : Node2D
+public partial class AdjacentRayComponent : Component
 {	[Export] public RayCast2D rayCastUp;
 	[Export] public RayCast2D rayCastRight;
 	[Export] public RayCast2D rayCastDown;

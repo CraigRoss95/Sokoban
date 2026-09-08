@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://m7so118hlil4"]
 
 [ext_resource type="Texture2D" uid="uid://f3b1yvp6yx21" path="res://Assets/immovableBox.png" id="1_h3jqy"]
+[ext_resource type="Script" uid="uid://wpi5phtarcb1" path="res://Scenes/ParentClasses/GameObject.cs" id="1_nulaq"]
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="2_86pdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
 size = Vector2(16, 12)
 
 [node name="ImmovableBox" type="Node2D" unique_id=680015066]
+script = ExtResource("1_nulaq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
 position = Vector2(0, -4)

@@ -5,7 +5,7 @@ using System.Linq;
 
 
 [GlobalClass]
-public partial class SpriteManagerComponent : Node2D
+public partial class SpriteManagerComponent : Component
 {
 	Sprite2D sprite;
 	// Called when the node enters the scene tree for the first time.
@@ -15,7 +15,7 @@ public partial class SpriteManagerComponent : Node2D
 
 		if(children.OfType<Sprite2D>().FirstOrDefault() == null)
 		{
-			GD.Print("null child for parent: " + GetParent().Name);
+			GD.Print("null sprite for parent: " + GetParent().Name);
 			return;
 		}
 		sprite = children.OfType<Sprite2D>().FirstOrDefault();

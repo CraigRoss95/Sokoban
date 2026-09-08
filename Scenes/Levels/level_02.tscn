@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bxoh5g6ow0mkf"]
+
+[ext_resource type="PackedScene" uid="uid://bmwb7flucaou5" path="res://Scenes/Objects/Player.tscn" id="1_q8k1b"]
+[ext_resource type="PackedScene" uid="uid://dyfbtynhsiihh" path="res://Scenes/Objects/Box.tscn" id="2_mnnsc"]
+[ext_resource type="PackedScene" uid="uid://m7so118hlil4" path="res://Scenes/Objects/ImmovableBox.tscn" id="3_51x33"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wf6s8"]
+scenes/1/scene = ExtResource("1_q8k1b")
+scenes/3/scene = ExtResource("2_mnnsc")
+scenes/4/scene = ExtResource("3_51x33")
+
+[sub_resource type="TileSet" id="TileSet_dbq10"]
+tile_size = Vector2i(32, 24)
+sources/0 = SubResource("TileSetScenesCollectionSource_wf6s8")
+
+[node name="Level01" type="Node2D" unique_id=520148004]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1514323658]
+tile_map_data = PackedByteArray(0, 0, 8, 0, 9, 0, 0, 0, 0, 0, 0, 0, 3, 0)
+tile_set = SubResource("TileSet_dbq10")
+rendering_quadrant_size = 11

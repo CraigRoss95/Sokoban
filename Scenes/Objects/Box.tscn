@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dyfbtynhsiihh"]
 
 [ext_resource type="Texture2D" uid="uid://dxqrbjec5qt71" path="res://Assets/box.png" id="1_g0g3h"]
+[ext_resource type="Script" uid="uid://wpi5phtarcb1" path="res://Scenes/ParentClasses/GameObject.cs" id="1_v63sv"]
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="3_ohx7e"]
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="4_ohx7e"]
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="4_u1u4y"]
@@ -10,6 +11,7 @@ size = Vector2(16, 11)
 
 [node name="Box" type="Node2D" unique_id=680015066]
 scale = Vector2(2, 2)
+script = ExtResource("1_v63sv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
 position = Vector2(0, -2.5)
@@ -21,9 +23,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597198190]
 shape = SubResource("RectangleShape2D_rueyf")
 
-[node name="MovementComponent" parent="." unique_id=380999123 node_paths=PackedStringArray("adjacentRayComponent", "spriteManagerComponent") instance=ExtResource("3_ohx7e")]
-adjacentRayComponent = NodePath("../AdjacentRayComponent")
-spriteManagerComponent = NodePath("../SpriteManagerComponent")
+[node name="MovementComponent" parent="." unique_id=380999123 instance=ExtResource("3_ohx7e")]
 
 [node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("4_u1u4y")]
 

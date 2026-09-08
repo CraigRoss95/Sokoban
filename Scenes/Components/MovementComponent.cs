@@ -1,12 +1,14 @@
+using System.Linq;
 using Godot;
 
 
 [GlobalClass]
-public partial class MovementComponent : Node2D
+public partial class MovementComponent : Component
 {
-	[Export] AdjacentRayComponent adjacentRayComponent;
+	GameObject parent;
+	public AdjacentRayComponent adjacentRayComponent;
 	[Export] bool movable = true;
-	[Export] SpriteManagerComponent spriteManagerComponent;
+	public SpriteManagerComponent spriteManagerComponent;
 	private double moveTime = 0.1;
 	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
@@ -14,6 +16,13 @@ public partial class MovementComponent : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		parent = GetParent<GameObject>();
+		Callable.From(_LateReady).CallDeferred();
+	}
+	public void _LateReady()
+	{
+		adjacentRayComponent = parent.components.OfType<AdjacentRayComponent>().FirstOrDefault();
+		spriteManagerComponent = parent.components.OfType<SpriteManagerComponent>().FirstOrDefault();
 		
 	}
 
@@ -29,7 +38,11 @@ public partial class MovementComponent : Node2D
 			moving = true;
 			GetTree().CreateTween().TweenCallback(Callable.From(DoneMoving)).SetDelay(moveTime);
 		}	
-		spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);
+		if (moving)
+		{
+			spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);
+
+		}
 	}
 
 	private async void DoneMoving()

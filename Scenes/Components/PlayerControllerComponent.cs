@@ -5,18 +5,29 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 [GlobalClass]
-public partial class PlayerControllerComponent : Node2D
+public partial class PlayerControllerComponent : Component
 {
-	[Export] public MovementComponent movementComponent;
-	[Export] AdjacentRayComponent	adjacentRayComponent;
+	public MovementComponent movementComponent;
+	public AdjacentRayComponent adjacentRayComponent;
+	public InputControllerComponent inputControllerComponent;
 
-	[Export] InputControllerComponent inputControllerComponent;
+	private GameObject parent;
 
 
 
-	// Called when the node enters the scene tree for the first time.
-	
-
+    // Called when the node enters the scene tree for the first time.
+  		public override void _Ready()
+	{
+		parent = GetParent<GameObject>();
+		Callable.From(_LateReady).CallDeferred();
+	}
+	public void _LateReady()
+	{
+		movementComponent = parent.components.OfType<MovementComponent>().FirstOrDefault();
+		adjacentRayComponent = parent.components.OfType<AdjacentRayComponent>().FirstOrDefault();
+		inputControllerComponent = parent.components.OfType<InputControllerComponent>().FirstOrDefault();
+		
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
