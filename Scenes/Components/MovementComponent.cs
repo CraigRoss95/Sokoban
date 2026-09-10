@@ -21,9 +21,8 @@ public partial class MovementComponent : Component
 	}
 	public void _LateReady()
 	{
-		adjacentRayComponent = parent.components.OfType<AdjacentRayComponent>().FirstOrDefault();
-		spriteManagerComponent = parent.components.OfType<SpriteManagerComponent>().FirstOrDefault();
-		
+		adjacentRayComponent = parent.GetComponent<AdjacentRayComponent>();
+		spriteManagerComponent = parent.GetComponent<SpriteManagerComponent>();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

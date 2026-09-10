@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Linq;
 using Godot;
@@ -22,8 +23,9 @@ public partial class InputControllerComponent : Component
 	}
 	public void _LateReady()
 	{	
-		playerControllerComponent = parent.components.OfType<PlayerControllerComponent>().FirstOrDefault();		
-	}
+		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
+
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Input(InputEvent @event)

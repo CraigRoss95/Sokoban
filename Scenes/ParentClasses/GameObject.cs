@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class GameObject : Node2D
 {
@@ -16,6 +17,19 @@ public partial class GameObject : Node2D
 				components.Add(childComponent);
 			}
 		}
+	}
+	// TODO Make this Genaric
+	public T GetComponent<T>()  where T : Component
+	{
+		foreach (Component component in components) 
+		{
+			if (component.GetType() == typeof(T))
+			{
+				return (T)component;
+			}
+		}
+		GD.PushError("Failed to get Component type: " + typeof(T));
+		return null;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

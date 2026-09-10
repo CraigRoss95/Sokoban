@@ -23,10 +23,9 @@ public partial class PlayerControllerComponent : Component
 	}
 	public void _LateReady()
 	{
-		movementComponent = parent.components.OfType<MovementComponent>().FirstOrDefault();
-		adjacentRayComponent = parent.components.OfType<AdjacentRayComponent>().FirstOrDefault();
-		inputControllerComponent = parent.components.OfType<InputControllerComponent>().FirstOrDefault();
-		
+		movementComponent = parent.GetComponent<MovementComponent>();
+		adjacentRayComponent = parent.GetComponent<AdjacentRayComponent>();
+		inputControllerComponent = parent.GetComponent<InputControllerComponent>();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
