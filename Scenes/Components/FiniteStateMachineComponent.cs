@@ -29,6 +29,7 @@ public partial class FiniteStateMachineComponent : Component
 				State childState = (State)child;
 				stateDict[child.Name] = childState;
 				childState.finiteStateMachine = this;
+				childState.gameObject = GetParent<GameObject>();
 
 				childState.ReadyState();
 				childState.ExitState();
@@ -53,7 +54,7 @@ public partial class FiniteStateMachineComponent : Component
 
 	public void TransitionStateTo(string key)
 	{
-		if (!stateDict.ContainsKey(key) || currentState == stateDict[key])
+		if (!stateDict.ContainsKey(key))
 		{
 			GD.PushWarning ("State" + key + "not found in FSM");
 			return;
@@ -63,8 +64,13 @@ public partial class FiniteStateMachineComponent : Component
 			GD.Print("All ready in state " + "key");
 		}
 		else
-		{
+		{ 
+			if (currentState is not null)
+			{
+				currentState.ExitState();
+			}
 			currentState = stateDict[key];
+			currentState.EnterState();
 		}
 	}
 }
