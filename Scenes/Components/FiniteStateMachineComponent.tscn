@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cspoqfjhjg5st"]
+
+[ext_resource type="Script" uid="uid://bgxf56a0y0c8k" path="res://Scenes/Components/FiniteStateMachineComponent.cs" id="1_llbh3"]
+
+[node name="FiniteStateMachineComponent" type="Node2D" unique_id=1028635876]
+script = ExtResource("1_llbh3")

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://qustnigx352u" path="res://Scenes/Components/InputControllerComponent.tscn" id="5_k46cm"]
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="5_s8rx5"]
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="7_w3k6v"]
+[ext_resource type="PackedScene" uid="uid://cspoqfjhjg5st" path="res://Scenes/Components/FiniteStateMachineComponent.tscn" id="8_w3k6v"]
+[ext_resource type="PackedScene" uid="uid://bbxljt1ap375o" path="res://Scenes/States/IdleStatePlayer.tscn" id="9_kgsvj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
 size = Vector2(16, 12)
@@ -29,12 +31,12 @@ texture = ExtResource("1_5f5w1")
 
 [node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("5_s8rx5")]
 
-[node name="InputControllerComponent" parent="." unique_id=171122283 node_paths=PackedStringArray("playerControllerComponent") instance=ExtResource("5_k46cm")]
-playerControllerComponent = NodePath("../PlayerControllerComponent")
+[node name="InputControllerComponent" parent="." unique_id=171122283 instance=ExtResource("5_k46cm")]
 
-[node name="PlayerControllerComponent" parent="." unique_id=1371010233 node_paths=PackedStringArray("movementComponent", "adjacentRayComponent", "inputControllerComponent") instance=ExtResource("3_s8rx5")]
-movementComponent = NodePath("../MovementComponetnt")
-adjacentRayComponent = NodePath("../AdjacentRayComponent")
-inputControllerComponent = NodePath("../InputControllerComponent")
+[node name="PlayerControllerComponent" parent="." unique_id=1371010233 instance=ExtResource("3_s8rx5")]
 
 [node name="SpriteManagerComponent" parent="." unique_id=584303223 instance=ExtResource("7_w3k6v")]
+
+[node name="FiniteStateMachineComponent" parent="." unique_id=1028635876 instance=ExtResource("8_w3k6v")]
+
+[node name="IdleState" parent="FiniteStateMachineComponent" unique_id=1754236115 instance=ExtResource("9_kgsvj")]

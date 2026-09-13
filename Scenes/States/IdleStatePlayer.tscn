@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bbxljt1ap375o"]
+
+[ext_resource type="Script" uid="uid://dshslwe7ti0as" path="res://Scenes/States/IdleStatePlayer.cs" id="1_8xwj6"]
+
+[node name="IdleState" type="Node2D" unique_id=1754236115]
+script = ExtResource("1_8xwj6")
