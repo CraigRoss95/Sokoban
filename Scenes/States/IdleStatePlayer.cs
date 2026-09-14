@@ -5,7 +5,7 @@ public partial class IdleStatePlayer : IdleState
 {
 	// Called when the node enters the scene tree for the first time.
 	private InputControllerComponent inputControllerComponent;
-
+	private PlayerControllerComponent playerControllerComponent;
 	private MovementComponent movementComponent;
 	public override void _Ready()
 	{
@@ -21,7 +21,10 @@ public partial class IdleStatePlayer : IdleState
 	private void _LateReady()
 	{
 		inputControllerComponent = gameObject.GetComponent<InputControllerComponent>();
+		playerControllerComponent = gameObject.GetComponent<PlayerControllerComponent>();
 		movementComponent = gameObject.GetComponent<MovementComponent>();
+
+		playerControllerComponent.brodcastPush += TransitionStateToPush;
 		movementComponent.brodcastMove += TransitionStateToMove;
 
 	}
@@ -41,6 +44,11 @@ public partial class IdleStatePlayer : IdleState
 	private void TransitionStateToMove(Vector2 direction)
 	{
 		finiteStateMachine.TransitionStateTo("MoveState");
+	}
+
+	private void TransitionStateToPush(Vector2 direction)
+	{
+		finiteStateMachine.TransitionStateTo("PushState");
 	}
 
 

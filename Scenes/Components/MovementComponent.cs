@@ -8,7 +8,6 @@ public partial class MovementComponent : Component
 {
 	GameObject parent;
 	public AdjacentRayComponent adjacentRayComponent;
-	[Export] bool movable = true;
 	public SpriteManagerComponent spriteManagerComponent;
 	private double moveTime = 0.1;
 	public bool moving = false;
@@ -32,7 +31,7 @@ public partial class MovementComponent : Component
 	public override void _PhysicsProcess(double delta)
 	{
 				
-		if (!moving && bufferedMoveDirection != new Vector2())
+		if (bufferedMoveDirection != new Vector2())
 		{	Tween tween = CreateTween();
 			tween.TweenProperty (GetParent<Node2D>(), "position", (GlobalPosition + bufferedMoveDirection * Global.pixelGridSize), moveTime);
 			
@@ -55,7 +54,7 @@ public partial class MovementComponent : Component
 
 	public void Move(Vector2 direction)
 	{
-		if (movable && CanMove(direction))
+		if (CanMove(direction))
 		{
 			brodcastMove(direction);
 			bufferedMoveDirection = direction;

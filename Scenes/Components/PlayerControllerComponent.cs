@@ -13,6 +13,8 @@ public partial class PlayerControllerComponent : Component
 
 	private GameObject parent;
 
+	public Action<Vector2> brodcastPush;
+
 
 
     // Called when the node enters the scene tree for the first time.
@@ -43,6 +45,8 @@ public partial class PlayerControllerComponent : Component
 		{
 			return;
 		}
+		brodcastPush?.Invoke(direction);
+
 		//Not working with tilemap
 		GD.Print(pushObject.Name);
 
