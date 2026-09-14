@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 
@@ -12,6 +13,8 @@ public partial class MovementComponent : Component
 	private double moveTime = 0.1;
 	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
+	public Action <Vector2> brodcastMove;
+	public Action brodcastDoneMoving;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -47,12 +50,14 @@ public partial class MovementComponent : Component
 	private async void DoneMoving()
 	{
 		moving = false;
+		brodcastDoneMoving?.Invoke();
 	}
 
 	public void Move(Vector2 direction)
 	{
 		if (movable && CanMove(direction))
 		{
+			brodcastMove(direction);
 			bufferedMoveDirection = direction;
 		}
 	}

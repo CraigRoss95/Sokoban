@@ -73,4 +73,5 @@ public partial class FiniteStateMachineComponent : Component
 			currentState.EnterState();
 		}
 	}
+	
 }

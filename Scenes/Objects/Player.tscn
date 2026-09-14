@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="7_w3k6v"]
 [ext_resource type="PackedScene" uid="uid://cspoqfjhjg5st" path="res://Scenes/Components/FiniteStateMachineComponent.tscn" id="8_w3k6v"]
 [ext_resource type="PackedScene" uid="uid://bbxljt1ap375o" path="res://Scenes/States/IdleStatePlayer.tscn" id="9_kgsvj"]
+[ext_resource type="PackedScene" uid="uid://bl81c8lb37hm6" path="res://Scenes/States/MoveState.tscn" id="10_d83tg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5w1"]
 size = Vector2(16, 12)
@@ -40,3 +41,5 @@ texture = ExtResource("1_5f5w1")
 [node name="FiniteStateMachineComponent" parent="." unique_id=1028635876 instance=ExtResource("8_w3k6v")]
 
 [node name="IdleState" parent="FiniteStateMachineComponent" unique_id=1754236115 instance=ExtResource("9_kgsvj")]
+
+[node name="MoveState" parent="FiniteStateMachineComponent" unique_id=1009701882 instance=ExtResource("10_d83tg")]

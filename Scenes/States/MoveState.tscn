@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bl81c8lb37hm6"]
+
+[ext_resource type="Script" uid="uid://chg7rwicae5dt" path="res://Scenes/States/MoveState.cs" id="1_tinpf"]
+
+[node name="MoveState" type="Node2D" unique_id=1009701882]
+script = ExtResource("1_tinpf")
