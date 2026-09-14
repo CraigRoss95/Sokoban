@@ -62,6 +62,7 @@ public partial class FiniteStateMachineComponent : Component
 		if (currentState == stateDict[key])
 		{
 			GD.Print("All ready in state " + "key");
+			return;
 		}
 		else
 		{ 

@@ -14,10 +14,9 @@ public partial class IdleStatePlayer : IdleState
 
     public override void _ExitTree()
 	{
-		
+		playerControllerComponent.brodcastPush -= TransitionStateToPush;
+		movementComponent.brodcastMove -= TransitionStateToMove;
 	}
-
-
 	private void _LateReady()
 	{
 		inputControllerComponent = gameObject.GetComponent<InputControllerComponent>();

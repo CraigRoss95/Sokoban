@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://bi4p5p16a6f7f"]
 
+[ext_resource type="Script" uid="uid://efdr757e35gp" path="res://Scenes/States/PushState.cs" id="1_lssuj"]
+
 [node name="PushState" type="Node2D" unique_id=1097652992]
+script = ExtResource("1_lssuj")

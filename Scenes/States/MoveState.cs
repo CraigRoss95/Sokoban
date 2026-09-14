@@ -12,6 +12,12 @@ public partial class MoveState : State
 		Callable.From(_LateReady).CallDeferred();
 	}
 
+    public override void _ExitTree()
+    {
+		movementComponent.brodcastDoneMoving -= TransitionStateToIdle;
+    }
+
+
 	private void _LateReady()
 	{
 		movementComponent = gameObject.GetComponent<MovementComponent>();

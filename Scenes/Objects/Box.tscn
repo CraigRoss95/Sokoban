@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://mqc5llabtse1" path="res://Scenes/Components/MovementComponent.tscn" id="3_ohx7e"]
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="4_ohx7e"]
 [ext_resource type="PackedScene" uid="uid://bgwceqq54itq2" path="res://Scenes/Components/AdjacentRayComponent.tscn" id="4_u1u4y"]
+[ext_resource type="PackedScene" uid="uid://cspoqfjhjg5st" path="res://Scenes/Components/FiniteStateMachineComponent.tscn" id="6_cejnj"]
+[ext_resource type="PackedScene" uid="uid://cgh2o68c2yn6g" path="res://Scenes/States/IdleState.tscn" id="7_mie5b"]
+[ext_resource type="PackedScene" uid="uid://bl81c8lb37hm6" path="res://Scenes/States/MoveState.tscn" id="8_qud0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
 size = Vector2(16, 11)
@@ -28,3 +31,9 @@ shape = SubResource("RectangleShape2D_rueyf")
 [node name="AdjacentRayComponent" parent="." unique_id=210132587 instance=ExtResource("4_u1u4y")]
 
 [node name="SpriteManagerComponent" parent="." unique_id=584303223 instance=ExtResource("4_ohx7e")]
+
+[node name="FiniteStateMachineComponent" parent="." unique_id=1028635876 instance=ExtResource("6_cejnj")]
+
+[node name="IdleState" parent="FiniteStateMachineComponent" unique_id=440978840 instance=ExtResource("7_mie5b")]
+
+[node name="MoveState" parent="FiniteStateMachineComponent" unique_id=1009701882 instance=ExtResource("8_qud0c")]

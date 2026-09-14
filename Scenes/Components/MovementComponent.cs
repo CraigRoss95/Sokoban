@@ -56,7 +56,7 @@ public partial class MovementComponent : Component
 	{
 		if (CanMove(direction))
 		{
-			brodcastMove(direction);
+			brodcastMove?.Invoke(direction);
 			bufferedMoveDirection = direction;
 		}
 	}
