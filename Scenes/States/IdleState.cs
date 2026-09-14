@@ -37,9 +37,7 @@ public partial class IdleState : State
 
 	private void TransitionStateToMove(Vector2 direction)
 	{
-		finiteStateMachine.TransitionStateTo("MoveState");
-		GD.Print("box moved");
-	
+		finiteStateMachine.TransitionStateTo("MoveState");	
 	}
 
 }

@@ -83,8 +83,7 @@ public partial class InputControllerComponent : Component
 	{
 		currentMoveBufferWait += delta ;
 		if (currentDirectionalInput != new Vector2()
-		&& moveSpeedBufferMax <= currentMoveBufferWait
-		&& !playerControllerComponent.movementComponent.moving)
+		&& moveSpeedBufferMax <= currentMoveBufferWait)
 		{
 			currentMoveBufferWait = 0.0;
 			//TODO make this use a signal
