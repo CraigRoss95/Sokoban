@@ -12,13 +12,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
 size = Vector2(16, 11)
 
-[node name="Box" type="Node2D" unique_id=680015066]
-scale = Vector2(2, 2)
-script = ExtResource("1_v63sv")
+[sub_resource type="SpriteFrames" id="SpriteFrames_cejnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g0g3h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009333879]
-position = Vector2(0, -2.5)
-texture = ExtResource("1_g0g3h")
+[node name="Box" type="Node2D" unique_id=680015066]
+script = ExtResource("1_v63sv")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=429007606]
 collision_mask = 2
@@ -37,3 +43,7 @@ shape = SubResource("RectangleShape2D_rueyf")
 [node name="IdleState" parent="FiniteStateMachineComponent" unique_id=440978840 instance=ExtResource("7_mie5b")]
 
 [node name="MoveState" parent="FiniteStateMachineComponent" unique_id=1009701882 instance=ExtResource("8_qud0c")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2024206018]
+position = Vector2(0, -2.5)
+sprite_frames = SubResource("SpriteFrames_cejnj")

@@ -28,7 +28,7 @@ public partial class GameObject : Node2D
 				return (T)component;
 			}
 		}
-		GD.PushError("Failed to get Component type: " + typeof(T));
+		//GD.PushError("Failed to get Component type: " + typeof(T));
 		return null;
 	}
 

@@ -7,6 +7,7 @@ public partial class FiniteStateMachineComponent : Component
 {
 	// Called when the node enters the scene tree for the first time.
 	[Export] public string initialStateName = "IdleState";
+	public Action <string> brodcastStateChange;
 
 	State currentState;
 	Dictionary <string, State> stateDict;
@@ -61,7 +62,7 @@ public partial class FiniteStateMachineComponent : Component
 		}
 		if (currentState == stateDict[key])
 		{
-			GD.Print("All ready in state " + "key");
+// 			GD.Print("All ready in state " + key);
 			return;
 		}
 		else
@@ -72,6 +73,7 @@ public partial class FiniteStateMachineComponent : Component
 			}
 			currentState = stateDict[key];
 			currentState.EnterState();
+			brodcastStateChange?.Invoke(key);
 		}
 	}
 	

@@ -9,7 +9,7 @@ public partial class MovementComponent : Component
 	GameObject parent;
 	public AdjacentRayComponent adjacentRayComponent;
 	public SpriteManagerComponent spriteManagerComponent;
-	private double moveTime = 0.1;
+	private double moveTime = 0.15;
 	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
 	public Action <Vector2> brodcastMove;
@@ -56,8 +56,8 @@ public partial class MovementComponent : Component
 	{
 		if (CanMove(direction))
 		{
-			brodcastMove?.Invoke(direction);
 			bufferedMoveDirection = direction;
+			brodcastMove?.Invoke(direction);
 		}
 	}
 
