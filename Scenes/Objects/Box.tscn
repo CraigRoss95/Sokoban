@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bl81c8lb37hm6" path="res://Scenes/States/MoveState.tscn" id="8_qud0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rueyf"]
-size = Vector2(16, 11)
+size = Vector2(16, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cejnj"]
 animations = [{
@@ -45,5 +45,5 @@ shape = SubResource("RectangleShape2D_rueyf")
 [node name="MoveState" parent="FiniteStateMachineComponent" unique_id=1009701882 instance=ExtResource("8_qud0c")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2024206018]
-position = Vector2(0, -2.5)
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_cejnj")

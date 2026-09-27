@@ -19,3 +19,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_wf6s8")
 tile_map_data = PackedByteArray("AAAIAAkAAAAAAAAAAwAKAAgAAAAAAAAAAwANAAYAAAAAAAAAAQANAAoAAAAAAAAABAAOAAoAAAAAAAAABAAPAAoAAAAAAAAABAAQAAoAAAAAAAAABAARAAoAAAAAAAAABAASAAoAAAAAAAAABAATAAoAAAAAAAAABAAUAAoAAAAAAAAABAA=")
 tile_set = SubResource("TileSet_dbq10")
 rendering_quadrant_size = 11
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1593343528]
+position = Vector2(256, 80)
+zoom = Vector2(3, 3)

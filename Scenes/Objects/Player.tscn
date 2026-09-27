@@ -315,7 +315,7 @@ shape = SubResource("RectangleShape2D_5f5w1")
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_8ydoy")
 animation = &"IdleStateUp"
-frame_progress = 0.62546855
+frame_progress = 0.043729123
 
 [node name="MovementComponetnt" parent="." unique_id=380999123 instance=ExtResource("2_r6m6p")]
 

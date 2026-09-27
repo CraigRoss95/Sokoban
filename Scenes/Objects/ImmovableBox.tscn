@@ -25,11 +25,10 @@ script = ExtResource("1_nulaq")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=597198190]
-position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_rueyf")
 
 [node name="SpriteManagerComponent" parent="." unique_id=584303223 instance=ExtResource("2_86pdh")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=740093043]
-position = Vector2(0, -4)
+position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_nulaq")
