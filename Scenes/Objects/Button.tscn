@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://coemud08lbgxc" path="res://Scenes/Objects/ButtonStateController.cs" id="4_f15vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f15vc"]
-size = Vector2(16, 12)
+size = Vector2(14, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1suu"]
 atlas = ExtResource("2_msdqy")
@@ -39,8 +39,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qh0ca")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"press",
 "speed": 5.0
 }]
 
@@ -49,7 +49,7 @@ script = ExtResource("1_msdqy")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=186371777]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=241577097]
 shape = SubResource("RectangleShape2D_f15vc")
@@ -59,6 +59,8 @@ isBackgroundObject = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=642323082]
 sprite_frames = SubResource("SpriteFrames_yld84")
+animation = &"press"
 
-[node name="ButtonStateController" type="Node2D" parent="." unique_id=375726210]
+[node name="ButtonStateController" type="Node2D" parent="." unique_id=375726210 node_paths=PackedStringArray("collider")]
 script = ExtResource("4_f15vc")
+collider = NodePath("../Area2D")

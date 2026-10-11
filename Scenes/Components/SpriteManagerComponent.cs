@@ -54,9 +54,20 @@ public partial class SpriteManagerComponent : Component
     public override void _ExitTree()
     {
         base._ExitTree();
-		if (fsmComponent != null)
+		if (movementComponent != null)
+		{
+			movementComponent.brodcastMove -= ListenForDirectionAsString;
+		}
+
+		fsmComponent = parent.GetComponent<FiniteStateMachineComponent>();
+		if (fsmComponent == null)
 		{
 			fsmComponent.brodcastStateChange -= ListenForStateChange;
+		}
+		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
+		if (playerControllerComponent != null)
+		{
+			playerControllerComponent.brodcastPush -= ListenForDirectionAsString;
 		}
 
     }
@@ -68,7 +79,6 @@ public partial class SpriteManagerComponent : Component
 		&& isBackgroundObject == false)
 		{
 			sprite.ZIndex = index;
-			GD.Print(index);
 		}
 	}
 
@@ -94,6 +104,11 @@ public partial class SpriteManagerComponent : Component
 	{
 		string animationName = stateName + directionString;
 
+		PlayAnimation(animationName);
+	}
+
+	public void PlayAnimation (string animationName)
+	{
 		if (sprite.SpriteFrames.GetAnimationNames().Contains(animationName))
 		{
 			GD.Print("playing Animation " + animationName);
