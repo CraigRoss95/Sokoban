@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="1_d1dk7"]
 [ext_resource type="Script" uid="uid://wpi5phtarcb1" path="res://Scenes/ParentClasses/GameObject.cs" id="1_msdqy"]
 [ext_resource type="Texture2D" uid="uid://bfukc26wunnxk" path="res://Assets/button.png" id="2_msdqy"]
-[ext_resource type="Script" uid="uid://coemud08lbgxc" path="res://Scenes/Objects/ButtonStateController.cs" id="4_f15vc"]
+[ext_resource type="Script" uid="uid://coemud08lbgxc" path="res://Scenes/SingletonScripts/ButtonStateController.cs" id="4_f15vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f15vc"]
 size = Vector2(14, 10)
@@ -27,13 +27,13 @@ region = Rect2(48, 0, 16, 12)
 [sub_resource type="SpriteFrames" id="SpriteFrames_yld84"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.2,
 "texture": SubResource("AtlasTexture_w1suu")
 }, {
-"duration": 1.0,
+"duration": 0.2,
 "texture": SubResource("AtlasTexture_f4v0r")
 }, {
-"duration": 1.0,
+"duration": 0.2,
 "texture": SubResource("AtlasTexture_boojq")
 }, {
 "duration": 1.0,
@@ -41,6 +41,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"press",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_qh0ca")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_boojq")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_f4v0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1suu")
+}],
+"loop": false,
+"name": &"unpress",
 "speed": 5.0
 }]
 

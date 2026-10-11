@@ -1,10 +1,13 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class ButtonStateController : Node2D
 {
 	private GameObject parent;
 	public bool pressed = false;
+
+	public Action brodcastButtonToggled;
 
 	[Export] public Area2D collider;
 	private SpriteManagerComponent spriteManagerComponent;
@@ -18,12 +21,15 @@ public partial class ButtonStateController : Node2D
 	{	
 		spriteManagerComponent = parent.GetComponent<SpriteManagerComponent>();
 		collider.AreaEntered += PressButton;
+		collider.AreaExited += UnpressButtonCoyoteTime;
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
 		collider.AreaEntered -= PressButton;
+		collider.AreaExited -= UnpressButtonCoyoteTime;
+
     }
 
 
@@ -31,13 +37,38 @@ public partial class ButtonStateController : Node2D
 	public override void _Process(double delta)
 	{
 	}
+
+	private async void UnpressButtonCoyoteTime(Node body)
+	{
+		await ToSignal(GetTree().CreateTimer(0.05f), SceneTreeTimer.SignalName.Timeout);
+		UnpressButtonCheck();
+	}
+
+	private void UnpressButtonCheck()
+	{
+		if (collider.GetOverlappingAreas().Count == 0)
+		{
+			UnPressButton();
+		}
+	}
 	private void PressButton(Node body)
 	{
-		pressed = true;
-		spriteManagerComponent.PlayAnimation("press");
-		GD.Print("button pressed");
+		if (pressed == false)
+		{
+			pressed = true;
+			spriteManagerComponent.PlayAnimation("press");
+		    brodcastButtonToggled?.Invoke();
+		}
+	}
 
-		//TODO when exiting the button transitions back to the unpressed state
-		//TODO brodcast to swithc
+	private void UnPressButton()
+	{
+		if (pressed == true)
+		{
+			pressed = false;
+		spriteManagerComponent.PlayAnimation("unpress");
+		brodcastButtonToggled?.Invoke();
+		}
+
 	}
 }
