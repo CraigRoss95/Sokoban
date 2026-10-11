@@ -87,10 +87,10 @@ public partial class SpriteManagerComponent : Component
 	void ListenForStateChange(string stateName)
 	{
 		string animationName = stateName + directionString;
-		GD.Print("playing Animation " + animationName);
 
 		if (sprite.SpriteFrames.GetAnimationNames().Contains(animationName))
 		{
+			GD.Print("playing Animation " + animationName);
 			sprite.Play(animationName);
 		}
 	}

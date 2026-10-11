@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bc466xdvw5cst"]
+
+[ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="1_d1dk7"]
+[ext_resource type="Script" uid="uid://wpi5phtarcb1" path="res://Scenes/ParentClasses/GameObject.cs" id="1_msdqy"]
+[ext_resource type="Texture2D" uid="uid://bfukc26wunnxk" path="res://Assets/button.png" id="2_msdqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f15vc"]
+size = Vector2(16, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1suu"]
+atlas = ExtResource("2_msdqy")
+region = Rect2(0, 0, 16, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4v0r"]
+atlas = ExtResource("2_msdqy")
+region = Rect2(16, 0, 16, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boojq"]
+atlas = ExtResource("2_msdqy")
+region = Rect2(32, 0, 16, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh0ca"]
+atlas = ExtResource("2_msdqy")
+region = Rect2(48, 0, 16, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yld84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1suu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4v0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boojq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh0ca")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Button" type="Node2D" unique_id=1751690540]
+script = ExtResource("1_msdqy")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=186371777]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=241577097]
+shape = SubResource("RectangleShape2D_f15vc")
+
+[node name="SpriteManagerComponent" parent="." unique_id=584303223 instance=ExtResource("1_d1dk7")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=642323082]
+sprite_frames = SubResource("SpriteFrames_yld84")

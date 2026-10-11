@@ -32,6 +32,8 @@ public partial class PushState : State
 
 	void TransitionStateToIdle ()
 	{
-		finiteStateMachine.TransitionStateTo("IdleState");
+		if (finiteStateMachine.currentState.GetType() == this.GetType()){
+			finiteStateMachine.TransitionStateTo("IdleState");
+		}
 	}
 }

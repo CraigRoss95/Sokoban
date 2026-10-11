@@ -42,12 +42,16 @@ public partial class IdleStatePlayer : IdleState
 
 	private void TransitionStateToMove(Vector2 direction)
 	{
-		finiteStateMachine.TransitionStateTo("MoveState");
+		if (finiteStateMachine.currentState.GetType() == this.GetType()){
+			finiteStateMachine.TransitionStateTo("MoveState");
+		}
 	}
 
 	private void TransitionStateToPush(Vector2 direction)
 	{
-		finiteStateMachine.TransitionStateTo("PushState");
+		if (finiteStateMachine.currentState.GetType() == this.GetType()){
+			finiteStateMachine.TransitionStateTo("PushState");
+		}
 	}
 
 

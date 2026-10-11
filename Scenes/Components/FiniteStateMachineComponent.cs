@@ -9,7 +9,7 @@ public partial class FiniteStateMachineComponent : Component
 	[Export] public string initialStateName = "IdleState";
 	public Action <string> brodcastStateChange;
 
-	State currentState;
+	public State currentState;
 	Dictionary <string, State> stateDict;
 
 	public override void _Ready()
@@ -62,7 +62,7 @@ public partial class FiniteStateMachineComponent : Component
 		}
 		if (currentState == stateDict[key])
 		{
-// 			GD.Print("All ready in state " + key);
+ 			GD.Print("All ready in state " + key);
 			return;
 		}
 		else
