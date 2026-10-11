@@ -12,6 +12,7 @@ public partial class SpriteManagerComponent : Component
 	GameObject parent;
 	// Called when the node enters the scene tree for the first time.
 
+	[Export] public bool isBackgroundObject = false;
 	
 	MovementComponent movementComponent;
 	FiniteStateMachineComponent fsmComponent;
@@ -23,6 +24,10 @@ public partial class SpriteManagerComponent : Component
 		parent = GetParent<GameObject>();
 		GetSiblingSprite();
 		Callable.From(_LateReady).CallDeferred();
+		if (isBackgroundObject)
+		{
+			sprite.ZIndex = -100;
+		}
 
 	}
 	public void _LateReady()
@@ -59,10 +64,11 @@ public partial class SpriteManagerComponent : Component
 
 	public void updateZIndex(int index)
 	{
-		if (sprite != null)
+		if (sprite != null
+		&& isBackgroundObject == false)
 		{
 			sprite.ZIndex = index;
-
+			GD.Print(index);
 		}
 	}
 

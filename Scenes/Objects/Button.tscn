@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bijjaywi6npj1" path="res://Scenes/Components/SpriteManagerComponent.tscn" id="1_d1dk7"]
 [ext_resource type="Script" uid="uid://wpi5phtarcb1" path="res://Scenes/ParentClasses/GameObject.cs" id="1_msdqy"]
 [ext_resource type="Texture2D" uid="uid://bfukc26wunnxk" path="res://Assets/button.png" id="2_msdqy"]
+[ext_resource type="Script" uid="uid://coemud08lbgxc" path="res://Scenes/Objects/ButtonStateController.cs" id="4_f15vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f15vc"]
 size = Vector2(16, 12)
@@ -47,12 +48,17 @@ animations = [{
 script = ExtResource("1_msdqy")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=186371777]
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=241577097]
 shape = SubResource("RectangleShape2D_f15vc")
 
 [node name="SpriteManagerComponent" parent="." unique_id=584303223 instance=ExtResource("1_d1dk7")]
+isBackgroundObject = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=642323082]
 sprite_frames = SubResource("SpriteFrames_yld84")
+
+[node name="ButtonStateController" type="Node2D" parent="." unique_id=375726210]
+script = ExtResource("4_f15vc")
