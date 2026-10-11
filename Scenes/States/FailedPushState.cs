@@ -1,0 +1,49 @@
+using Godot;
+using System;
+
+public partial class FailedPushState : State
+
+{
+	MovementComponent movementComponent;
+	// Called when the node enters the scene tree for the first time.
+
+		public override void _Ready()
+	{
+		Callable.From(_LateReady).CallDeferred();
+	}
+
+    public override void _ExitTree()
+    {
+		movementComponent.brodcastDoneMoving -= TransitionStateToIdle;
+    }
+
+
+	private void _LateReady()
+	{
+		movementComponent = gameObject.GetComponent<MovementComponent>();
+		movementComponent.brodcastDoneMoving += TransitionStateToIdle;
+
+	}
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		
+	}
+    public override void EnterState()
+    {
+        base.EnterState();
+		float moveTime = 0.15f;
+		GetTree().CreateTween().TweenCallback(Callable.From(TransitionStateToIdle)).SetDelay(moveTime);
+
+    }
+
+
+	void TransitionStateToIdle ()
+	{
+		if (finiteStateMachine.currentState.GetType() == this.GetType()){
+			finiteStateMachine.TransitionStateTo("IdleState");
+			GD.Print("leaving failed state");
+		}
+	}
+	
+}

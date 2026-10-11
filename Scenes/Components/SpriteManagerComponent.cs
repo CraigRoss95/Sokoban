@@ -47,6 +47,7 @@ public partial class SpriteManagerComponent : Component
 		if (playerControllerComponent != null)
 		{
 			playerControllerComponent.brodcastPush += ListenForDirectionAsString;
+			playerControllerComponent.brodcastFailedPush += ListenForDirectionAsString;
 		}
 
 	}

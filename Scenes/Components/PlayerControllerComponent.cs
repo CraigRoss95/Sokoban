@@ -14,6 +14,7 @@ public partial class PlayerControllerComponent : Component
 	private GameObject parent;
 
 	public Action<Vector2> brodcastPush;
+	public Action<Vector2> brodcastFailedPush;
 
 
 
@@ -45,20 +46,21 @@ public partial class PlayerControllerComponent : Component
 		{
 			return;
 		}
-		brodcastPush?.Invoke(direction);
 
-		//Not working with tilemap
-		GD.Print(pushObject.Name);
 
 		MovementComponent pushObjectMoveComponent = pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
 		if (pushObjectMoveComponent.CanMove(direction))
 		{
+		brodcastPush?.Invoke(direction);
+		//Not working with tilemap
+		GD.Print(pushObject.Name);
 			pushObjectMoveComponent.Move(direction);
 			movementComponent.ForceMove(direction);
 		}
 		
 		else
 		{
+		brodcastFailedPush?.Invoke(direction);
 			//TODO Play sad sound
 		}
 

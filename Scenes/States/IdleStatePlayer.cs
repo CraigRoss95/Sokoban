@@ -15,7 +15,9 @@ public partial class IdleStatePlayer : IdleState
     public override void _ExitTree()
 	{
 		playerControllerComponent.brodcastPush -= TransitionStateToPush;
+		playerControllerComponent.brodcastFailedPush -= TransitionStateToFailedPush;
 		movementComponent.brodcastMove -= TransitionStateToMove;
+
 	}
 	private void _LateReady()
 	{
@@ -24,6 +26,8 @@ public partial class IdleStatePlayer : IdleState
 		movementComponent = gameObject.GetComponent<MovementComponent>();
 
 		playerControllerComponent.brodcastPush += TransitionStateToPush;
+		playerControllerComponent.brodcastFailedPush += TransitionStateToFailedPush;
+
 		movementComponent.brodcastMove += TransitionStateToMove;
 
 	}
@@ -51,6 +55,13 @@ public partial class IdleStatePlayer : IdleState
 	{
 		if (finiteStateMachine.currentState.GetType() == this.GetType()){
 			finiteStateMachine.TransitionStateTo("PushState");
+		}
+	}
+
+	private void TransitionStateToFailedPush(Vector2 direction)
+	{
+		if (finiteStateMachine.currentState.GetType() == this.GetType()){
+			finiteStateMachine.TransitionStateTo("FailedPushState");
 		}
 	}
 

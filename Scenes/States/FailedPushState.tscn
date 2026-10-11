@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://yjft3hw7ihyj"]
+
+[ext_resource type="Script" uid="uid://cwfbp013tttj8" path="res://Scenes/States/FailedPushState.cs" id="1_gbo10"]
+
+[node name="FailedPushState" type="Node2D" unique_id=1205022742]
+script = ExtResource("1_gbo10")
