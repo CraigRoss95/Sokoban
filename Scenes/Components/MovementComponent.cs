@@ -32,22 +32,20 @@ public partial class MovementComponent : Component
 		float moveTime = Global.stepTime;
 		if (bufferedMoveDirection != new Vector2())
 		{	Tween tween = CreateTween();
+            // this is a different tween from the one running in the turn manager, this might cause problems...
 			tween.TweenProperty (GetParent<Node2D>(), "position", (GlobalPosition + bufferedMoveDirection * Global.pixelGridSize), moveTime);
-			
 			bufferedMoveDirection = new Vector2();
-			moving = true;
 			GetTree().CreateTween().TweenCallback(Callable.From(DoneMoving)).SetDelay(moveTime);
 		}	
-		if (moving)
-		{
-			spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);
 
-		}
+	
+		spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);
+
+		
 	}
 
 	private async void DoneMoving()
 	{
-		moving = false;
 		brodcastDoneMoving?.Invoke();
 	}
 
@@ -68,7 +66,6 @@ public partial class MovementComponent : Component
 
 	public bool CanMove(Vector2 direction)
 	{
-		return ( !moving &&
-			adjacentRayComponent.GetAdjacentNode(direction) == null);
+		return (adjacentRayComponent.GetAdjacentNode(direction) == null);
 	}
 }
