@@ -7,8 +7,8 @@ public partial class TurnManager : Node
 {
 	public static bool isTurnHappening = false;
     float turnLength= 0.15f;
-    Action brodcastTurnStarted;
-    Action brodcastTurnEnded;
+    public Action brodcastTurnStarted;
+    public Action brodcastTurnEnded;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

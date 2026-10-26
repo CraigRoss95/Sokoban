@@ -10,9 +10,12 @@ public partial class InputControllerComponent : Component
 
 	[Export] double moveSpeedBufferMax = 0.2; 
 
+	private TurnManager turnManager;
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
 	public Action brodcastNoInput;
+	private bool hasInputThisTurn = false;
+	
 
 
 	private GameObject parent;
@@ -24,10 +27,19 @@ public partial class InputControllerComponent : Component
 		Callable.From(_LateReady).CallDeferred();
 	}
 	public void _LateReady()
-	{	
-		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
+	{
+		turnManager = GetNode<TurnManager>("/root/TurnManager");
 
+		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
+		
+		turnManager.brodcastTurnEnded += ResetCheckInputs;
     }
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+		turnManager.brodcastTurnEnded -= ResetCheckInputs;
+    }
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Input(InputEvent @event)
@@ -68,7 +80,6 @@ public partial class InputControllerComponent : Component
 			{
 				currentDirectionalInput = Vector2.Left;
 			}
-			
 		}
 		else if (Global.directionList.Contains(Input.GetVector("left","right","up","down")))
 		{
@@ -77,10 +88,16 @@ public partial class InputControllerComponent : Component
 		else if (Input.GetVector("left","right","up","down") == new Vector2())
 		{
 			currentDirectionalInput = new Vector2();
-			brodcastNoInput?.Invoke();
-			
 		}
+	}
+
+	public void ResetCheckInputs()
+	{	
 		
+		if (currentDirectionalInput == new Vector2())
+		{
+			GD.Print("released this turn");
+		}
 	}
 
 	public void UseBufferedInputs(double delta)

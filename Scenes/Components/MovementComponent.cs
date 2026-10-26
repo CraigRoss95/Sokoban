@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Godot;
 
-
 [GlobalClass]
 public partial class MovementComponent : Component
 {
@@ -38,10 +37,7 @@ public partial class MovementComponent : Component
 			GetTree().CreateTween().TweenCallback(Callable.From(DoneMoving)).SetDelay(moveTime);
 		}	
 
-	
-		spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);
-
-		
+		spriteManagerComponent.updateZIndex((int)GlobalPosition.Y);		
 	}
 
 	private async void DoneMoving()
@@ -62,7 +58,6 @@ public partial class MovementComponent : Component
 	{
 		bufferedMoveDirection = direction;
 	}
-
 
 	public bool CanMove(Vector2 direction)
 	{
