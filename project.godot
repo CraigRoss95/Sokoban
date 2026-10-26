@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://dewul256kbo76"
+TurnManager="*uid://dndbemx15ywig"
 
 [dotnet]
 

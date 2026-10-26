@@ -12,6 +12,8 @@ public partial class InputControllerComponent : Component
 
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
+	public Action brodcastNoInput;
+
 
 	private GameObject parent;
 	// Called when the node enters the scene tree for the first time.
@@ -75,6 +77,8 @@ public partial class InputControllerComponent : Component
 		else if (Input.GetVector("left","right","up","down") == new Vector2())
 		{
 			currentDirectionalInput = new Vector2();
+			brodcastNoInput?.Invoke();
+			
 		}
 		
 	}

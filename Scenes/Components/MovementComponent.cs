@@ -9,7 +9,6 @@ public partial class MovementComponent : Component
 	GameObject parent;
 	public AdjacentRayComponent adjacentRayComponent;
 	public SpriteManagerComponent spriteManagerComponent;
-	private double moveTime = 0.15;
 	public bool moving = false;
 	Vector2 bufferedMoveDirection = new Vector2();
 	public Action <Vector2> brodcastMove;
@@ -30,7 +29,7 @@ public partial class MovementComponent : Component
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-				
+		float moveTime = Global.stepTime;
 		if (bufferedMoveDirection != new Vector2())
 		{	Tween tween = CreateTween();
 			tween.TweenProperty (GetParent<Node2D>(), "position", (GlobalPosition + bufferedMoveDirection * Global.pixelGridSize), moveTime);

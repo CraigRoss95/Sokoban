@@ -16,16 +16,19 @@ public partial class PlayerControllerComponent : Component
 	public Action<Vector2> brodcastPush;
 	public Action<Vector2> brodcastFailedPush;
 
+	private TurnManager turnManager;
 
 
-    // Called when the node enters the scene tree for the first time.
-  		public override void _Ready()
+
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		parent = GetParent<GameObject>();
 		Callable.From(_LateReady).CallDeferred();
 	}
 	public void _LateReady()
 	{
+		turnManager = GetNode<TurnManager>("/root/TurnManager");
 		movementComponent = parent.GetComponent<MovementComponent>();
 		adjacentRayComponent = parent.GetComponent<AdjacentRayComponent>();
 		inputControllerComponent = parent.GetComponent<InputControllerComponent>();
@@ -34,10 +37,10 @@ public partial class PlayerControllerComponent : Component
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+
 	}
-    
-	private void Push (Vector2 direction)
+
+	private void Push(Vector2 direction)
 	{
 		Node2D pushObject = adjacentRayComponent.GetAdjacentNode(direction);
 
@@ -51,16 +54,16 @@ public partial class PlayerControllerComponent : Component
 		MovementComponent pushObjectMoveComponent = pushObject.GetChildren().OfType<MovementComponent>().FirstOrDefault();
 		if (pushObjectMoveComponent.CanMove(direction))
 		{
-		brodcastPush?.Invoke(direction);
-		//Not working with tilemap
-		GD.Print(pushObject.Name);
+			brodcastPush?.Invoke(direction);
+			//Not working with tilemap
+			GD.Print(pushObject.Name);
 			pushObjectMoveComponent.Move(direction);
 			movementComponent.ForceMove(direction);
 		}
-		
+
 		else
 		{
-		brodcastFailedPush?.Invoke(direction);
+			brodcastFailedPush?.Invoke(direction);
 			//TODO Play sad sound
 		}
 
@@ -68,13 +71,18 @@ public partial class PlayerControllerComponent : Component
 
 	public void UseDirectionalInput(Vector2 inputDirection)
 	{
-		if (movementComponent.CanMove(inputDirection))
+		if (TurnManager.isTurnHappening == false)
 		{
-			movementComponent.Move(inputDirection);
+			turnManager.StartTurn();
+
+			if (movementComponent.CanMove(inputDirection))
+			{
+				movementComponent.Move(inputDirection);
+			}
+			else
+			{
+				Push(inputDirection);
+			}
 		}
-		else
-		{
-			Push(inputDirection);
-		}
-	}	
+	}
 }

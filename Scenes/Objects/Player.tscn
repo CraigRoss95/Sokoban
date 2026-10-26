@@ -371,7 +371,7 @@ shape = SubResource("RectangleShape2D_5f5w1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=501005841]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_8ydoy")
-animation = &"FailedPushStateUp"
+animation = &"IdleStateDown"
 
 [node name="MovementComponetnt" parent="." unique_id=380999123 instance=ExtResource("2_r6m6p")]
 
