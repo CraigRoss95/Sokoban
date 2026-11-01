@@ -33,17 +33,7 @@ public partial class FailedPushState : State
     {
         base.EnterState();
 		float moveTime = 0.15f;
-		GetTree().CreateTween().TweenCallback(Callable.From(TransitionStateToIdle)).SetDelay(moveTime);
+		GetTree().CreateTween().TweenCallback(Callable.From(() => finiteStateMachine.TransitionStateTo("IdleState"))).SetDelay(moveTime);
 
     }
-
-
-	void TransitionStateToIdle ()
-	{
-		if (finiteStateMachine.currentState.GetType() == this.GetType()){
-			finiteStateMachine.TransitionStateTo("IdleState");
-			GD.Print("leaving failed state");
-		}
-	}
-	
 }
