@@ -13,25 +13,21 @@ public partial class MoveState : State
 	}
 
     public override void _ExitTree()
-    {
-		movementComponent.brodcastDoneMoving -= TransitionStateToIdle;
+    {		
+		movementComponent.brodcastDoneMoving -= () => finiteStateMachine.TransitionStateTo("IdleState");
+
     }
 
 
 	private void _LateReady()
 	{
 		movementComponent = gameObject.GetComponent<MovementComponent>();
-		movementComponent.brodcastDoneMoving += TransitionStateToIdle;
+		movementComponent.brodcastDoneMoving += () => finiteStateMachine.TransitionStateTo("IdleState");
 
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		
-	}
-
-	void TransitionStateToIdle ()
-	{
-		finiteStateMachine.TransitionStateTo("IdleState");
 	}
 }

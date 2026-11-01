@@ -14,10 +14,9 @@ public partial class IdleStatePlayer : IdleState
 
     public override void _ExitTree()
 	{
-		playerControllerComponent.brodcastPush -= TransitionStateToPush;
-		playerControllerComponent.brodcastFailedPush -= TransitionStateToFailedPush;
-		movementComponent.brodcastMove -= TransitionStateToMove;
-
+		playerControllerComponent.brodcastPush -= _ => finiteStateMachine.TransitionStateTo("PushState");
+		playerControllerComponent.brodcastFailedPush -= _ => finiteStateMachine.TransitionStateTo("FailedPushState");
+		movementComponent.brodcastMove -= _ => finiteStateMachine.TransitionStateTo("MoveState");;
 	}
 	private void _LateReady()
 	{
@@ -25,10 +24,9 @@ public partial class IdleStatePlayer : IdleState
 		playerControllerComponent = gameObject.GetComponent<PlayerControllerComponent>();
 		movementComponent = gameObject.GetComponent<MovementComponent>();
 
-		playerControllerComponent.brodcastPush += TransitionStateToPush;
-		playerControllerComponent.brodcastFailedPush += TransitionStateToFailedPush;
-
-		movementComponent.brodcastMove += TransitionStateToMove;
+		playerControllerComponent.brodcastPush += _ => finiteStateMachine.TransitionStateTo("PushState");
+		playerControllerComponent.brodcastFailedPush += _ => finiteStateMachine.TransitionStateTo("FailedPushState");
+		movementComponent.brodcastMove += _ => finiteStateMachine.TransitionStateTo("MoveState");;
 
 	}
 
@@ -43,27 +41,4 @@ public partial class IdleStatePlayer : IdleState
 		//TODO IMPLEMENT CODE
 		inputControllerComponent.UseBufferedInputs(delta);
     }
-
-	private void TransitionStateToMove(Vector2 direction)
-	{
-		if (finiteStateMachine.currentState.GetType() == this.GetType()){
-			finiteStateMachine.TransitionStateTo("MoveState");
-		}
-	}
-
-	private void TransitionStateToPush(Vector2 direction)
-	{
-		if (finiteStateMachine.currentState.GetType() == this.GetType()){
-			finiteStateMachine.TransitionStateTo("PushState");
-		}
-	}
-
-	private void TransitionStateToFailedPush(Vector2 direction)
-	{
-		if (finiteStateMachine.currentState.GetType() == this.GetType()){
-			finiteStateMachine.TransitionStateTo("FailedPushState");
-		}
-	}
-
-
 }
