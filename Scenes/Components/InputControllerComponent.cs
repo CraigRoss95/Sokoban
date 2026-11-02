@@ -13,7 +13,7 @@ public partial class InputControllerComponent : Component
 	private TurnManager turnManager;
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
-	public Action brodcastNoInput;
+	public Action brodcastNoInputAtEndOfTurn;
 	private bool hasInputThisTurn = false;
 	
 
@@ -96,7 +96,8 @@ public partial class InputControllerComponent : Component
 		
 		if (currentDirectionalInput == new Vector2())
 		{
-			GD.Print("released this turn");
+			brodcastNoInputAtEndOfTurn?.Invoke();
+			//GD.Print("released this turn");
 		}
 	}
 

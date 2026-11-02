@@ -14,14 +14,14 @@ public partial class PushState : State
 
     public override void _ExitTree()
     {
-		movementComponent.brodcastDoneMoving -= () => finiteStateMachine.TransitionStateTo("IdleState");
+		movementComponent.brodcastDoneMoving -= finiteStateMachine.ChangeStateAction("IdleState");
     }
 
 
 	private void _LateReady()
 	{
 		movementComponent = gameObject.GetComponent<MovementComponent>();
-		movementComponent.brodcastDoneMoving += () => finiteStateMachine.TransitionStateTo("IdleState");
+		movementComponent.brodcastDoneMoving += finiteStateMachine.ChangeStateAction("IdleState");
 
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

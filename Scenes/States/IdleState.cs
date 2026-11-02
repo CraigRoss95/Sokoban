@@ -14,13 +14,13 @@ public partial class IdleState : State
 
 	 public override void _ExitTree()
 	{
-		movementComponent.brodcastMove -= _ => finiteStateMachine.TransitionStateTo("MoveState");
+		movementComponent.brodcastMove -= _ => finiteStateMachine.ChangeStateAction("MoveState");
 	}
 	private void _LateReady()
 	{
 		movementComponent = gameObject.GetComponent<MovementComponent>();
 
-		movementComponent.brodcastMove += _ => finiteStateMachine.TransitionStateTo("MoveState");
+		movementComponent.brodcastMove += _ => finiteStateMachine.ChangeStateAction("MoveState");
 
 	}
 
