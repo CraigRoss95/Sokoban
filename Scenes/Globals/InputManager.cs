@@ -4,9 +4,8 @@ using System.Linq;
 using Godot;
 
 [GlobalClass]
-public partial class InputControllerComponent : Component
+public partial class InputManager : Node
 {
-	public PlayerControllerComponent playerControllerComponent;
 
 	[Export] double moveSpeedBufferMax = 0.2; 
 
@@ -14,23 +13,21 @@ public partial class InputControllerComponent : Component
 	private Vector2 currentDirectionalInput = new Vector2 ();
 	private double currentMoveBufferWait = 0.0;
 	public Action brodcastNoInputAtEndOfTurn;
+	public Action<Vector2> brodcastInputs;
 	private bool hasInputThisTurn = false;
 	
 
 
-	private GameObject parent;
 	// Called when the node enters the scene tree for the first time.
 
 	public override void _Ready()
 	{
-		parent = GetParent<GameObject>();
 		Callable.From(_LateReady).CallDeferred();
 	}
 	public void _LateReady()
 	{
 		turnManager = GetNode<TurnManager>("/root/TurnManager");
 
-		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
 		
 		turnManager.brodcastTurnEnded += ResetCheckInputs;
     }
@@ -97,7 +94,7 @@ public partial class InputControllerComponent : Component
 		if (currentDirectionalInput == new Vector2())
 		{
 			brodcastNoInputAtEndOfTurn?.Invoke();
-			//GD.Print("released this turn");
+			GD.Print("released this turn");
 		}
 	}
 
@@ -109,8 +106,10 @@ public partial class InputControllerComponent : Component
 		{
 			currentMoveBufferWait = 0.0;
 			//TODO make this use a signal
-			playerControllerComponent.UseDirectionalInput(currentDirectionalInput);
+			brodcastInputs?.Invoke(currentDirectionalInput);
 		}
 	}
+
+
 
 }

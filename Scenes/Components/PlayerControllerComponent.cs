@@ -9,14 +9,13 @@ public partial class PlayerControllerComponent : Component
 {
 	public MovementComponent movementComponent;
 	public AdjacentRayComponent adjacentRayComponent;
-	public InputControllerComponent inputControllerComponent;
-
 	private GameObject parent;
 
 	public Action<Vector2> brodcastPush;
 	public Action<Vector2> brodcastFailedPush;
 
 	private TurnManager turnManager;
+		public InputManager inputManager;
 
 
 
@@ -29,10 +28,18 @@ public partial class PlayerControllerComponent : Component
 	public void _LateReady()
 	{
 		turnManager = GetNode<TurnManager>("/root/TurnManager");
+		inputManager = GetNode<InputManager>("/root/InputManager");
+
 		movementComponent = parent.GetComponent<MovementComponent>();
 		adjacentRayComponent = parent.GetComponent<AdjacentRayComponent>();
-		inputControllerComponent = parent.GetComponent<InputControllerComponent>();
+		inputManager.brodcastInputs += UseDirectionalInput;
 	}
+
+    public override void _ExitTree()
+    {
+		inputManager.brodcastInputs -= UseDirectionalInput;
+    }
+
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

@@ -4,7 +4,7 @@ using System;
 public partial class IdleStatePlayer : IdleState
 {
 	// Called when the node enters the scene tree for the first time.
-	private InputControllerComponent inputControllerComponent;
+	private InputManager inputManager;
 	private PlayerControllerComponent playerControllerComponent;
 	private MovementComponent movementComponent;
 	public override void _Ready()
@@ -13,20 +13,21 @@ public partial class IdleStatePlayer : IdleState
 	}
 
     public override void _ExitTree()
-	{
-		playerControllerComponent.brodcastPush -= _ => finiteStateMachine.TransitionStateTo("PushState");
-		playerControllerComponent.brodcastFailedPush -= _ => finiteStateMachine.TransitionStateTo("FailedPushState");
-		movementComponent.brodcastMove -= _ => finiteStateMachine.TransitionStateTo("MoveState");;
+	{	
+		playerControllerComponent.brodcastPush -= _ => finiteStateMachine.ChangeStateAction("PushState");
+		playerControllerComponent.brodcastFailedPush -= _ => finiteStateMachine.ChangeStateAction("FailedPushState");
+		movementComponent.brodcastMove -= _ => finiteStateMachine.ChangeStateAction("MoveState");;
 	}
 	private void _LateReady()
 	{
-		inputControllerComponent = gameObject.GetComponent<InputControllerComponent>();
-		playerControllerComponent = gameObject.GetComponent<PlayerControllerComponent>();
-		movementComponent = gameObject.GetComponent<MovementComponent>();
+		inputManager =  GetNode<InputManager>("/root/InputManager");
 
-		playerControllerComponent.brodcastPush += _ => finiteStateMachine.TransitionStateTo("PushState");
-		playerControllerComponent.brodcastFailedPush += _ => finiteStateMachine.TransitionStateTo("FailedPushState");
-		movementComponent.brodcastMove += _ => finiteStateMachine.TransitionStateTo("MoveState");;
+		movementComponent = gameObject.GetComponent<MovementComponent>();
+		playerControllerComponent = gameObject.GetComponent<PlayerControllerComponent>();
+
+		playerControllerComponent.brodcastPush += _ => finiteStateMachine.ChangeStateAction("PushState");
+		playerControllerComponent.brodcastFailedPush += _ => finiteStateMachine.ChangeStateAction("FailedPushState");
+		movementComponent.brodcastMove += _ => finiteStateMachine.ChangeStateAction("MoveState");;
 
 	}
 
@@ -39,6 +40,6 @@ public partial class IdleStatePlayer : IdleState
     public override void UpdateState(double delta)
     {
 		//TODO IMPLEMENT CODE
-		inputControllerComponent.UseBufferedInputs(delta);
+		inputManager.UseBufferedInputs(delta);
     }
 }

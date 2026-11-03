@@ -14,7 +14,6 @@ public partial class MoveState : State
 
     public override void _ExitTree()
     {		
-		movementComponent.brodcastDoneMoving -= finiteStateMachine.ChangeStateAction("IdleState");
 
     }
 
