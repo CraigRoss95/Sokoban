@@ -15,7 +15,7 @@ public partial class MoveState : State
 
     public override void _ExitTree()
     {		
-		inputManager.brodcastNoInputAtEndOfTurn -= () => finiteStateMachine.TransitionStateTo("IdleState");
+		inputManager.brodcastNoInputAtEndOfTurn -= () => this.RequestTransitionToState("IdleState");
     }
 
 
@@ -23,7 +23,7 @@ public partial class MoveState : State
 	{
 		inputManager =  GetNode<InputManager>("/root/InputManager");
 
-		inputManager.brodcastNoInputAtEndOfTurn += () => finiteStateMachine.TransitionStateTo("IdleState");
+		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
 		//movementComponent.brodcastDoneMoving += finiteStateMachine.ChangeStateAction("IdleState");
 
 	}

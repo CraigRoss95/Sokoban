@@ -14,14 +14,14 @@ public partial class PushState : State
 
     public override void _ExitTree()
     {
-		inputManager.brodcastNoInputAtEndOfTurn -= () => finiteStateMachine.TransitionStateTo("IdleState");
+		inputManager.brodcastNoInputAtEndOfTurn -= () => this.RequestTransitionToState("IdleState");
     }
 
 
 	private void _LateReady()
 	{
 		inputManager =  GetNode<InputManager>("/root/InputManager");
-		inputManager.brodcastNoInputAtEndOfTurn += () => finiteStateMachine.TransitionStateTo("IdleState");
+		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
 
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

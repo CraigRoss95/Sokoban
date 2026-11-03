@@ -13,4 +13,17 @@ public partial class State : Node
 	public virtual void UpdateState(double delta) {} 
 	public virtual void PhysicsUpdateState(double delta) {} 
 	public virtual void HandelInputState(InputEvent @event) {}
+
+	private bool IsCurrentState()
+	{
+		return finiteStateMachine.currentState.Name == Name;
+	}
+
+	public void RequestTransitionToState(string state)
+	{
+		if (IsCurrentState() == true)
+		{
+			finiteStateMachine.TransitionStateTo(state);
+		}
+	}
 }

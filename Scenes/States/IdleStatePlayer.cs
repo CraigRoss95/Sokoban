@@ -14,9 +14,9 @@ public partial class IdleStatePlayer : IdleState
 
     public override void _ExitTree()
 	{	
-		playerControllerComponent.brodcastPush -= _ => finiteStateMachine.TransitionStateTo("PushState");
-		playerControllerComponent.brodcastFailedPush -= _ => finiteStateMachine.TransitionStateTo("FailedPushState");
-		movementComponent.brodcastMove -= _ => finiteStateMachine.TransitionStateTo("MoveState");;
+		playerControllerComponent.brodcastPush -= _ => this.RequestTransitionToState("PushState");
+		playerControllerComponent.brodcastFailedPush -= _ => this.RequestTransitionToState("FailedPushState");
+		movementComponent.brodcastMove -= _ => this.RequestTransitionToState("MoveState");;
 	}
 	private void _LateReady()
 	{
@@ -25,9 +25,9 @@ public partial class IdleStatePlayer : IdleState
 		movementComponent = gameObject.GetComponent<MovementComponent>();
 		playerControllerComponent = gameObject.GetComponent<PlayerControllerComponent>();
 
-		playerControllerComponent.brodcastPush += _ => finiteStateMachine.TransitionStateTo("PushState");
-		playerControllerComponent.brodcastFailedPush += _ => finiteStateMachine.TransitionStateTo("FailedPushState");
-		movementComponent.brodcastMove += _ => finiteStateMachine.TransitionStateTo("MoveState");
+		playerControllerComponent.brodcastPush += _ => this.RequestTransitionToState("PushState");
+		playerControllerComponent.brodcastFailedPush += _ => this.RequestTransitionToState("FailedPushState");
+		movementComponent.brodcastMove += _ => this.RequestTransitionToState("MoveState");
 
 	}
 
