@@ -5,6 +5,7 @@ public partial class MoveState : State
 
 {
 	MovementComponent movementComponent;
+	InputManager inputManager;
 	// Called when the node enters the scene tree for the first time.
 
 		public override void _Ready()
@@ -14,14 +15,16 @@ public partial class MoveState : State
 
     public override void _ExitTree()
     {		
-
+		inputManager.brodcastNoInputAtEndOfTurn -= () => finiteStateMachine.TransitionStateTo("IdleState");
     }
 
 
 	private void _LateReady()
 	{
-		movementComponent = gameObject.GetComponent<MovementComponent>();
-		movementComponent.brodcastDoneMoving += finiteStateMachine.ChangeStateAction("IdleState");
+		inputManager =  GetNode<InputManager>("/root/InputManager");
+
+		inputManager.brodcastNoInputAtEndOfTurn += () => finiteStateMachine.TransitionStateTo("IdleState");
+		//movementComponent.brodcastDoneMoving += finiteStateMachine.ChangeStateAction("IdleState");
 
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

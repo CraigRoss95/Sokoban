@@ -52,11 +52,6 @@ public partial class FiniteStateMachineComponent : Component
 	{
 		currentState.HandelInputState(@event);
 	}
-	public Action ChangeStateAction(string stateName)
-	{
-		return () => TransitionStateTo(stateName);
-
-	}
 
 	public void TransitionStateTo(string key)
 	{

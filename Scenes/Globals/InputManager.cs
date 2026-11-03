@@ -78,10 +78,10 @@ public partial class InputManager : Node
 				currentDirectionalInput = Vector2.Left;
 			}
 		}
-		else if (Global.directionList.Contains(Input.GetVector("left","right","up","down")))
-		{
-			currentDirectionalInput = Input.GetVector("left","right","up","down");
-		}
+		// else if (Global.directionList.Contains(Input.GetVector("left","right","up","down")))
+		// {
+		// 	currentDirectionalInput = Input.GetVector("left","right","up","down");
+		// }
 		else if (Input.GetVector("left","right","up","down") == new Vector2())
 		{
 			currentDirectionalInput = new Vector2();
