@@ -24,7 +24,6 @@ public partial class MoveState : State
 		inputManager =  GetNode<InputManager>("/root/InputManager");
 
 		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
-		//movementComponent.brodcastDoneMoving += finiteStateMachine.ChangeStateAction("IdleState");
 
 	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

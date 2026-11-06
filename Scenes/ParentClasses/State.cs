@@ -5,6 +5,8 @@ public partial class State : Node
 {
 	public FiniteStateMachineComponent finiteStateMachine;
 	public GameObject gameObject;
+
+	public bool isActiveState = false;
 	// Called when the node enters the scene tree for the first time.
 	public virtual void EnterState() {}
 	public virtual void ExitState() {}
@@ -14,14 +16,10 @@ public partial class State : Node
 	public virtual void PhysicsUpdateState(double delta) {} 
 	public virtual void HandelInputState(InputEvent @event) {}
 
-	private bool IsCurrentState()
-	{
-		return finiteStateMachine.currentState.Name == Name;
-	}
 
 	public void RequestTransitionToState(string state)
 	{
-		if (IsCurrentState() == true)
+		if (isActiveState)
 		{
 			finiteStateMachine.TransitionStateTo(state);
 		}

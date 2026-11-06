@@ -69,9 +69,11 @@ public partial class FiniteStateMachineComponent : Component
 		{ 
 			if (currentState is not null)
 			{
+				currentState.isActiveState = false;
 				currentState.ExitState();
 			}
 			currentState = stateDict[key];
+			currentState.isActiveState = true;
 			currentState.EnterState();
 			brodcastStateChange?.Invoke(key);
 		}
