@@ -19,18 +19,18 @@ public partial class AdjacentRayComponent : Component
 		
 	}
 
-	public RayCast2D GetRay (Vector2 direction)
+	public RayCast2D GetRay (Vector2 rayDirection)
 	{
 		//Note Raycast Up is at the bottom (defualt)
-		if (direction == Vector2.Right)
+		if (rayDirection == Vector2.Right)
 		{
 			return rayCastRight;
 		}
-		else if (direction == Vector2.Down)
+		else if (rayDirection == Vector2.Down)
 		{
 			return rayCastDown;
 		}
-		else if (direction == Vector2.Left)
+		else if (rayDirection == Vector2.Left)
 		{
 			return rayCastLeft;
 		}
@@ -40,9 +40,9 @@ public partial class AdjacentRayComponent : Component
 		}
 	}
 
-	public Node2D GetAdjacentNode(Vector2 direction)
+	public Node2D GetAdjacentNode(Vector2 rayDirection)
 	{
-		RayCast2D ray = GetRay(direction);
+		RayCast2D ray = GetRay(rayDirection);
 		if (ray.IsColliding())
 		{
 			Node2D collision = (Node2D)ray.GetCollider();

@@ -36,10 +36,4 @@ public partial class IdleStatePlayer : IdleState
 	{
 		
 	}
-
-    public override void UpdateState(double delta)
-    {
-		//TODO IMPLEMENT CODE
-		inputManager.UseBufferedInputs(delta);
-    }
 }

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bd54jta8di28u"]
+
+[ext_resource type="Script" uid="uid://dlik8anosv76" path="res://Scenes/Components/DirectionComponent.cs" id="1_2ut1d"]
+
+[node name="DirectionComponent" type="Node2D" unique_id=1615842359]
+script = ExtResource("1_2ut1d")
