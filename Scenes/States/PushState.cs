@@ -19,7 +19,8 @@ public partial class PushState : State
 
 
 	private void _LateReady()
-	{
+	{		stateName = "PushState";
+
 		inputManager =  GetNode<InputManager>("/root/InputManager");
 		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
 

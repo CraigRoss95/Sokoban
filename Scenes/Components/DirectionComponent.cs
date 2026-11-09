@@ -46,6 +46,11 @@ public partial class DirectionComponent : Component
 		return currentDirection;
 	}
 
+	public string GetDirectionAsString()
+	{
+		return DirectionToString(currentDirection);
+	}
+
 	public string DirectionToString(Vector2 direction)
 	{
 		if (direction == Vector2.Up)

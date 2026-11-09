@@ -11,17 +11,16 @@ public partial class IdleState : State
 		Callable.From(_LateReady).CallDeferred();
 
 	}
-
-	 public override void _ExitTree()
-	{
-		movementComponent.brodcastMove -= _ => this.RequestTransitionToState("MoveState");
-	}
 	private void _LateReady()
 	{
+		stateName = "IdleState";
 		movementComponent = gameObject.GetComponent<MovementComponent>();
-
 		movementComponent.brodcastMove += _ => this.RequestTransitionToState("MoveState");
+	}
 
+		 public override void _ExitTree()
+	{
+		movementComponent.brodcastMove -= _ => this.RequestTransitionToState("MoveState");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

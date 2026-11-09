@@ -11,19 +11,20 @@ public partial class FailedPushState : State
 	{
 		Callable.From(_LateReady).CallDeferred();
 	}
+	private void _LateReady()
+	{
+		stateName = "FailedPushState";
+		inputManager =  GetNode<InputManager>("/root/InputManager");
+		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
 
+	}
     public override void _ExitTree()
     {
 		inputManager.brodcastNoInputAtEndOfTurn -= () => this.RequestTransitionToState("IdleState");
     }
 
 
-	private void _LateReady()
-	{
-		inputManager =  GetNode<InputManager>("/root/InputManager");
-		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
 
-	}
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

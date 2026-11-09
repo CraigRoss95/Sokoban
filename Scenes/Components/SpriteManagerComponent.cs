@@ -17,8 +17,8 @@ public partial class SpriteManagerComponent : Component
 	MovementComponent movementComponent;
 	FiniteStateMachineComponent fsmComponent;
 	PlayerControllerComponent playerControllerComponent;
+	DirectionComponent directionComponent;
 
-	string directionString = "";
 	public override void _Ready()
 	{
 		parent = GetParent<GameObject>();
@@ -32,45 +32,28 @@ public partial class SpriteManagerComponent : Component
 	}
 	public void _LateReady()
 	{
-		movementComponent = parent.GetComponent<MovementComponent>();
-		if (movementComponent != null)
-		{
-			movementComponent.brodcastMove += ListenForDirectionAsString;
-		}
 
 		fsmComponent = parent.GetComponent<FiniteStateMachineComponent>();
 		if (fsmComponent != null)
 		{
 			fsmComponent.brodcastStateChange += ListenForStateChange;
 		}
-		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
-		if (playerControllerComponent != null)
-		{
-			playerControllerComponent.brodcastPush += ListenForDirectionAsString;
-			playerControllerComponent.brodcastFailedPush += ListenForDirectionAsString;
-		}
 
+		directionComponent = parent.GetComponent<DirectionComponent>();
+		if (directionComponent != null)
+		{
+			directionComponent.BrodcastDirectionChanged += ListenForDirectionChange;
+		}
 	}
 
     public override void _ExitTree()
     {
         base._ExitTree();
-		if (movementComponent != null)
-		{
-			movementComponent.brodcastMove -= ListenForDirectionAsString;
-		}
-
 		fsmComponent = parent.GetComponent<FiniteStateMachineComponent>();
 		if (fsmComponent == null)
 		{
 			fsmComponent.brodcastStateChange -= ListenForStateChange;
 		}
-		playerControllerComponent = parent.GetComponent<PlayerControllerComponent>();
-		if (playerControllerComponent != null)
-		{
-			playerControllerComponent.brodcastPush -= ListenForDirectionAsString;
-		}
-
     }
 
 
@@ -101,9 +84,18 @@ public partial class SpriteManagerComponent : Component
 		sprite.ZIndex = (int)GetParent<Node2D>().GlobalPosition.Y;
 	}
 
-	void ListenForStateChange(string stateName)
+
+
+	private void PlayAnimationStateAndDirection(string stateString)
 	{
-		string animationName = stateName + directionString;
+		string animationName;
+		if (directionComponent != null)
+		{
+			animationName = stateString + directionComponent.GetDirectionAsString();
+		}
+		else {
+			animationName = stateString;
+		}
 
 		PlayAnimation(animationName);
 	}
@@ -115,29 +107,19 @@ public partial class SpriteManagerComponent : Component
 			GD.Print("playing Animation " + animationName);
 			sprite.Play(animationName);
 		}
-	}
-
-	void ListenForDirectionAsString(Vector2 direction)
-	{
-		if (direction == Vector2.Up)
-		{
-			directionString = "Up";
-		}
-		else if (direction == Vector2.Right)
-		{
-			directionString = "Right";
-		}
-		else if (direction == Vector2.Down)
-		{
-			directionString = "Down";
-		}
-		else if (direction == Vector2.Left)
-		{
-			directionString = "Left";
-		}
 		else
 		{
-			directionString = "";
+			//GD.Print("failed to find " + animationName  + " (" + this.GetParent<Node>().Name + ")");
 		}
+	}
+
+	void ListenForDirectionChange(Vector2 direction)
+	{
+		PlayAnimationStateAndDirection(fsmComponent.currentState.stateName);
+	}
+
+		void ListenForStateChange(string stateName)
+	{
+		PlayAnimationStateAndDirection (stateName);
 	}
 }

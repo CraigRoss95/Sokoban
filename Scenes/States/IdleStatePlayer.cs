@@ -20,6 +20,7 @@ public partial class IdleStatePlayer : IdleState
 	}
 	private void _LateReady()
 	{
+		stateName = "IdleState";
 		inputManager =  GetNode<InputManager>("/root/InputManager");
 
 		movementComponent = gameObject.GetComponent<MovementComponent>();

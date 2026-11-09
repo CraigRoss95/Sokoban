@@ -21,6 +21,7 @@ public partial class MoveState : State
 
 	private void _LateReady()
 	{
+		stateName = "MoveState";
 		inputManager =  GetNode<InputManager>("/root/InputManager");
 
 		inputManager.brodcastNoInputAtEndOfTurn += () => this.RequestTransitionToState("IdleState");
